@@ -35,11 +35,11 @@
 |address_last_name_kana|string|null: false|
 |address_first_name_kana|string|null: false|
 |zip_code|integer(7)|null: false|
-|prefecture|string|null: false|
+|prefecture_id(acitve_hash)|integer|null: false|
 |city|string|null: false|
 |street|string|null: false|
 |building_name|string|
-|phone_number|integer|unique: true|
+|phone_number|string|unique: true|
 |user|references|null: false, foreign_key: true|
 
 ### Association
@@ -50,11 +50,9 @@
 ## credit_cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|card_number|integer|null: false, unique: true|
-|expiration_year|integer|null: false|
-|expiration_month|integer|null: false|
-|security_code|integer|null: false|
 |user|references|null: false, foreign_key: true|
+|customer_id|string|null: false|
+|card_id|string|null: false|
 
 ### Association
 - belongs_to :user
@@ -95,11 +93,11 @@
 |brand|references|foreign_key: true|
 |product_status|references|null: false, foreign_key: true|
 |buyer_address|references|null: false, foreign_key: true|
-|prefecture|string|null: false|
+|prefecture_id(acitve_hash)|integer|null: false|
 |size|references|null: false, foreign_key: true|
 |shipping_day|references|null: false, foreign_key: true|
 |delivery_type|references|null: false, foreign_key: true|
-|picture|references|null: false, foreign_key: true|
+|product_images|references|null: false, foreign_key: true|
 |category|references|null: false, foreign_key: true|
 |trading_status|enum|null: false|
 |seller|references|null: false, foreign_key: true|
