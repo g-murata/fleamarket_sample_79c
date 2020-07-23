@@ -1,24 +1,150 @@
-# README
+# Fleamarket_Sample_79C
+# DB設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<img src="https://github.com/TomozQ/fleamarket_sample_79c/blob/master/app/assets/images/er.png?raw=true">
 
-Things you may want to cover:
+## usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|nickname|string|null: false|
+|email|string|null: false|
+|encrypeted_password|string|null: false|
+|last_name|string|null: false|
+|first_name|string|null: false|
+|last_name_kana|string|null: false|
+|first_name_kana|string|null: false|
+|birth_date|date|null: false|
+|introduction|string|
 
-* Ruby version
+### Association
+- has_one :user_address, dependent: :destroy
+- has_one :credit_card, dependent: :destroy
+- has_many :comments, dependent: destroy
+- has_many :likes, dependent: destroy
+- has_many :user_evaluations
+- has_many :seller_products, foreign_key: "seller_id"
+- has_many :buyer_products, foreign_key: "buyer_id"
 
-* System dependencies
+--------------------------------------------------------------
 
-* Configuration
+## user_addressesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|address_last_name|string|null: false|
+|address_first_name|string|null: false|
+|address_last_name_kana|string|null: false|
+|address_first_name_kana|string|null: false|
+|zip_code|integer(7)|null: false|
+|prefecture_id(acitve_hash)|integer|null: false|
+|city|string|null: false|
+|street|string|null: false|
+|building_name|string|
+|phone_number|string|unique: true|
+|user|references|null: false, foreign_key: true|
 
-* Database creation
+### Association
+- belongs_to :user
 
-* Database initialization
+--------------------------------------------------------------
 
-* How to run the test suite
+## credit_cardsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user|references|null: false, foreign_key: true|
+|customer_id|string|null: false|
+|card_id|string|null: false|
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+- belongs_to :user
 
-* Deployment instructions
+--------------------------------------------------------------
 
-* ...
+## user_evaluationsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|review|text|null: false|
+|user|references|null: false, foreign_key: true|
+|product|references|null: false, foreign_key: true|
+|evaluation|references|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
+- belongs_to :product
+
+--------------------------------------------------------------
+
+## productsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|product_name|string|null: false|
+|description|text|null: false|
+|price|integer|null: false|
+|brand|references|foreign_key: true|
+|product_status|references|null: false, foreign_key: true|
+|buyer_address|references|null: false, foreign_key: true|
+|prefecture_id(acitve_hash)|integer|null: false|
+|size|references|null: false, foreign_key: true|
+|shipping_day|references|null: false, foreign_key: true|
+|delivery_type|references|null: false, foreign_key: true|
+|category|references|null: false, foreign_key: true|
+|trading_status|enum|null: false|
+|seller|references|null: false, foreign_key: true|
+|buyer|references|foreign_key: true|
+|deal_closed_date|timestamp|
+
+### Association
+- has_one :user_evaluation
+- has_many :comments, dependent: :destroy
+- has_many :likes
+- has_many :product_images, dependent: :destroy
+- belongs_to :category
+- belongs_to :brand
+- belongs_to :seller
+- belongs_to :buyer
+
+--------------------------------------------------------------
+
+## brandsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|
+
+### Association
+- has_many :products
+
+--------------------------------------------------------------
+
+## product_imagesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|url|string|null:false|
+|product|references|null:false, foreign_key:true|
+
+### Association
+- belongs_to :product
+
+--------------------------------------------------------------
+
+## likesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user|references|null:false, foreign_key:true|
+|product|references|null:false, foreign_key:true|
+
+### Association
+- belongs_to :user
+- belongs_to :product
+
+--------------------------------------------------------------
+
+## commentsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|comment|text|null:false|
+|user|references|null:false, foreign_key:true|
+|product|references|null:false, foreign_key:true|
+|created_at|timestamp|null:false|
+
+### Association
+- belongs_to :user
+- belongs_to :product
