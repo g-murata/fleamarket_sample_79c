@@ -13,11 +13,8 @@
 |first_name|string|null: false|
 |last_name_kana|string|null: false|
 |first_name_kana|string|null: false|
-|birth_year|date|null: false|
-|birth_month|date|null: false|
-|birth_day|date|null: false|
+|birth_date|date|null: false|
 |introduction|string|
-|user|references|null: false, foreign_key: true|
 
 ### Association
 - has_one :user_address, dependent: :destroy
