@@ -1,0 +1,125 @@
+//住所登録
+.Address_registration
+  .Address_registration__close
+    ×
+
+  .Address_registration__register
+    住所登録
+
+  //■フォーム
+  .Address_registration__destination_last.Address_registration--form
+    %ul.Address_registration__label        
+      %li.Address_registration_required_item 必須
+      %li 送付先氏名(名字)
+    %input.Address_registration__input
+
+  .Address_registration__destination_first.Address_registration--form
+    %ul.Address_registration__label
+      %li.Address_registration_required_item 必須
+      %li 送付先氏名(名前)
+    %input.Address_registration__input      
+
+  .Address_registration__destination_furigana_last.Address_registration--form
+    %ul.Address_registration__label
+      %li.Address_registration_required_item 必須
+      %li 送付先氏名(名字:ﾌﾘｶﾞﾅ)
+    %input.Address_registration__input  
+
+  
+  .Address_registration__destination_furigana_first.Address_registration--form
+    %ul.Address_registration__label
+      %li.Address_registration_required_item 必須  
+      %li 送付先氏名(名前:ﾌﾘｶﾞﾅ))
+    %input.Address_registration__input
+
+  .Address_registration__postal_code.Address_registration--form
+    %ul.Address_registration__label
+      %li.Address_registration_required_item 必須  
+      %li 郵便番号
+    %input.Address_registration__input{placeholder:"ハイフン除く"}        
+
+  .Address_registration__prefectures.Address_registration--form
+    %ul.Address_registration__label
+      %li.Address_registration_required_item 必須  
+      %li 都道府県
+    .Address_Member_registration__birthday_list.Member_registration__birthday_list
+      %select
+        %option{:value => "北海道"} 北海道     
+        %option{:value => "青森県"} 青森県
+        %option{:value => "岩手県"} 岩手県
+        %option{:value => "宮城県"} 宮城県
+        %option{:value => "秋田県"} 秋田県
+        %option{:value => "山形県"} 山形県
+        %option{:value => "福島県"} 福島県
+        %option{:value => "茨城県"} 茨城県
+        %option{:value => "栃木県"} 栃木県
+        %option{:value => "群馬県"} 群馬県
+        %option{:value => "埼玉県"} 埼玉県
+        %option{:value => "千葉県"} 千葉県
+        %option{:value => "東京都"} 東京都
+        %option{:value => "神奈川県"} 神奈川県
+        %option{:value => "新潟県"} 新潟県
+        %option{:value => "富山県"} 富山県
+        %option{:value => "石川県"} 石川県
+        %option{:value => "福井県"} 福井県
+        %option{:value => "山梨県"} 山梨県
+        %option{:value => "長野県"} 長野県
+        %option{:value => "岐阜県"} 岐阜県
+        %option{:value => "静岡県"} 静岡県
+        %option{:value => "愛知県"} 愛知県
+        %option{:value => "三重県"} 三重県
+        %option{:value => "滋賀県"} 滋賀県
+        %option{:value => "京都府"} 京都府
+        %option{:value => "大阪府"} 大阪府
+        %option{:value => "兵庫県"} 兵庫県
+        %option{:value => "奈良県"} 奈良県
+        %option{:value => "和歌山県"} 和歌山県
+        %option{:value => "鳥取県"} 鳥取県
+        %option{:value => "島根県"} 島根県
+        %option{:value => "岡山県"} 岡山県
+        %option{:value => "広島県"} 広島県
+        %option{:value => "山口県"} 山口県
+        %option{:value => "徳島県"} 徳島県
+        %option{:value => "香川県"} 香川県
+        %option{:value => "愛媛県"} 愛媛県
+        %option{:value => "高知県"} 高知県
+        %option{:value => "福岡県"} 福岡県
+        %option{:value => "佐賀県"} 佐賀県
+        %option{:value => "長崎県"} 長崎県
+        %option{:value => "熊本県"} 熊本県
+        %option{:value => "大分県"} 大分県
+        %option{:value => "宮崎県"} 宮崎県
+        %option{:value => "鹿児島県"} 鹿児島県
+        %option{:value => "沖縄県"} 沖縄県
+ 
+    
+  .Address_registration__municipalities.Address_registration--form
+    %ul.Address_registration__label
+      %li.Address_registration_required_item 必須  
+      %li  市町村
+    %input.Address_registration__input      
+    
+  .Address_registration__address.Address_registration--form
+    %ul.Address_registration__label
+      %li.Address_registration_required_item 必須    
+      %li  番地
+    %input.Address_registration__input  
+    
+  .Address_registration__building_and_room_number.Address_registration--form
+    %ul.Address_registration__label 
+      %li.Address_registration_required_item 必須  
+      %li  建物・部屋番号
+    %input.Address_registration__input      
+    
+  .Address_registration__phone_number.Address_registration--form
+    %ul.Address_registration__label
+      %li.Address_registration_required_item.Address_registration_required_item--not_required
+      %li  電話番号
+    %input.Address_registration__input{placeholder:"ハイフン除く"}        
+
+
+  .Address_registration__submit
+    %input.Address_registration__input{type: "submit", value:"登録する"}
+
+  .Address_registration__existing_id
+    既存IDをお持ちの方はこちら（ログイン）
