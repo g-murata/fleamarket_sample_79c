@@ -1,0 +1,28 @@
+.user-info
+  .user-info__container
+    .user-info__container__contents
+      .user-info__container__contents__content
+        .user-info__container__contents__content__left
+          .user-info__container__contents__content__left__image
+            %img.user-info__container__contents__content__left__image__user
+              = image_tag src="ログイン素材.png", size: "110x110"
+          .user-info__container__contents__content__left__like-count
+            = icon('fas', 'heart', class: 'user-info__container__contents__content__left__like-count__heart')
+            %p.user-info__container__contents__content__left__like-count__counter
+              0
+        .user-info__container__contents__content__right
+          .user-info__container__contents__content__right__top
+            %p.user-info__container__contents__content__right__top__user-shop
+              UsersShop
+            .user-info__container__contents__content__right__top__user-profile
+              %input(type="button" id="button" value="プロフィール編集")
+                = icon('fas', 'cog', class: 'user-info__container__contents__content__right__top__user-profile__edit')
+            %p.user-info__container__contents__content__right__top__user-name 
+              UserName
+          .user-info__container__contents__content__right__middle
+            = link_to '#' do
+              ショップ詳細
+          .user-info__container__contents__content__right__bottom
+            = link_to '#' do
+              = icon('fas', 'sign-out-alt', class: 'user-info__container__contents__content__right__bottom__logout__icon')
+              ログアウト

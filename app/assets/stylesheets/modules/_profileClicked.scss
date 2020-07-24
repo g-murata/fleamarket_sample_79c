@@ -1,0 +1,136 @@
+.profile-clicked{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  &__wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgba($color: #fff, $alpha: 0.7);
+    &__contents{
+      width: 620px;
+      border: 1px solid black;
+      background: linear-gradient(#ffffff, #ececec);
+      border: 2px solid #e7e7e7;
+      &__content{
+        width: 100%;
+        &__details{
+          word-break: break-all;
+          &__detail {
+            display: flex;
+            justify-content: space-around;
+            li {
+              color: #333;
+              padding: 10px 20px;
+              border: 2px solid #e7e7e7;
+              cursor: pointer;
+              list-style: none;
+              transition: .3s;
+              display: inline-block;
+              font-size: 14px;
+              width: 100%;
+              margin: -2px -1px 0 -1px;
+            }
+            li.active {
+              color: #333;
+              font-weight: bold;
+              font-size: 20px;
+              cursor: pointer;
+              border-bottom: none;
+            }
+            
+          } 
+          &__contents ul {
+            display: none;
+          }
+          &__contents ul.show {
+            display: block;
+            li{
+              display: flex;
+              margin-top: 5px;
+              margin-bottom: 5px;
+              margin-left: 80px;
+              position: relative;
+              line-height: 50px;
+              align-items: center;
+              input{
+                border: 2px solid #e7e7e7;
+                width: 300px;
+                position: absolute;
+                right: 100px;
+              }
+              textarea{
+                height: 100px;
+                border: 2px solid #e7e7e7;
+                width: 300px;
+                position: absolute;
+                right: 100px;
+                overflow-wrap: anywhere;
+              }
+              select{
+                border: 2px solid #e7e7e7;
+                width: 300px;
+                position: absolute;
+                right: 100px;
+                height: 30px;
+              }
+              
+            }
+            li.intro{
+              line-height: 100px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.form-group{
+  margin: 20px;
+  span.require-icon{
+    background-color: red;
+    color: white;
+    border: 1px solid #ff59c3;
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+}
+.actions{
+  display: flex;
+  justify-content: center;
+}
+button.register-member#submit-button{
+  color: white;
+  background: linear-gradient(#FF5192, #FF0000);
+  font-size: 20px;
+  border: none;
+  width: 80%;
+  line-height: 40px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+input.cvc.input-default{
+  width: 400px;
+}
+
+select{
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.card-png{
+  margin-top: 10px;
+}
+
+span.registration_font{
+  font-weight: bold;
+  font-size: 20px;
+  color: #646166;
+}
