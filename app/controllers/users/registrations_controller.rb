@@ -22,6 +22,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
     render :new_user_address
   end
 
+  def create_user_address
+    @user = User.new(session["devise.regist_data"]["user"])
+    @user_address = User_address.new(user_address_params)
+    unless @user_address.valid?
+      flash.now[:alert] = @user_address.errors.full_messages
+      render :new_user_address and return
+    end
+    @user.build_user_address(@user_address.attributes)
+    @user.save
+    session["devise.regist_data"]["user"].clear
+    sign_in(:user, @user)
+  end
+
+  protected
+
+  def user_address_params
+    params.require(:user_address).permit(:address_last_name, :address_first_name, :address_last_name_kana, :address_first_name_kana, :zip_code, :prefecture_id, :city, :street, :building_name, :phone_number)
+  end
+
   # GET /resource/edit
   # def edit
   #   super
