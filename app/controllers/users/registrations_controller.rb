@@ -24,7 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create_user_address
     @user = User.new(session["devise.regist_data"]["user"])
-    @user_address = User_address.new(user_address_params)
+    @user_address = UserAddress.new(user_address_params)
     unless @user_address.valid?
       flash.now[:alert] = @user_address.errors.full_messages
       render :new_user_address and return
