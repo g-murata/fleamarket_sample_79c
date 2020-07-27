@@ -1,0 +1,381 @@
+//----------------------------------------共通処理---------------------------------------------//
+
+//枠のサイズ、位置を決める（引数1：縦幅、引数2:横幅、引数3:縦の位置、引数4:横の位置）
+@mixin Frame_position($height,$width,$top,$left){
+  height: $height;
+  width: $width;
+  top: $top;
+  left: $left;
+  position: absolute;
+  -webkit-border-radius: 8px;                                         
+  -webkit-box-shadow:rgba(181, 181, 181, 0.278431) 0px 0px 6px 3px;
+}
+
+//ボタンの色を決める（引数1：文字色）
+@mixin Link_button($color){
+  color: $color;
+  cursor: pointer;    
+}
+
+//登録ボタンの色を決める（引数1：背景色）
+@mixin Submit_button($background-color){
+  background-color: $background-color;
+  color:white;
+  border: 1px solid white;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px 0px;  
+}
+
+//入力欄
+@mixin Input_area{
+  width: 260px;
+  height: 40px;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid #ececec;
+  background: #f8f8f8;
+  padding: 0px 20px;
+  font-size: 14px;
+  color: #646166;
+}
+
+//ラベル 
+@mixin Label{
+  width: 250px;
+  font-size: 14px;
+  color: #646166;
+}
+
+
+//------------------------------------------------------------------------------------------//
+
+//ログイン画面
+.Login_main_page{
+  height:100vh;
+}
+
+//ログイン画面用大枠
+.Login_box{
+  @include Frame_position(400px,620px,15%,30%);
+  background-color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}
+
+//ログイン画面の要素を入れる枠
+.Login_box_information{
+  height:80%;
+  width:50%;
+
+  &--logo{
+    
+    img{
+      width:80%;
+      
+    }
+
+  }
+}
+
+//ログイン画面
+.Login_which_one{
+
+  //はじめてご利用になる方
+  &__first_time_use{
+    @include Submit_button(blue);
+    margin-top:80px;
+  }
+
+  //アカウントをお持ちの方
+  &__already_have_account{
+    @include Link_button(#36c2e0);
+  }
+
+}
+
+
+//会員登録画面//
+.Member_registration{
+  display:none;       
+
+  @include Frame_position(auto,620px,20px,420px);
+  background-color: white;
+  padding:30px 25px;
+
+  //×（閉じる）ボタン
+  &__close{
+    @include Link_button(gray);
+    position: absolute;
+    z-index: 2;
+    top: 0px;
+    right: 18px;
+    width: 23px;
+    height: 23px;
+    font-size: 42px;
+   
+  }
+  
+  //会員登録
+  &__register{
+    font-weight: 600;
+    padding: 20px 0px 50px 10px;
+    font-size: 24px;
+    color:gray;
+  }
+
+  //フォーム欄
+  &--form{
+    border-top:1px solid gray;
+    padding: 10px;
+    margin: 10px;
+    display:flex;
+  }
+
+  //ラベル
+  &__label{
+    @include Label;
+    display:flex;
+  }
+
+  //生年月日
+  &__birthday_list{
+
+    select{
+      width: 70px;
+      height: 30px;
+      color: gray;
+      background: #ececec;
+      border: 1px solid #c8c8c8;
+      -webkit-appearance: none;
+      -webkit-border-radius: 5px;
+      font-size: 12px;
+      padding-left: 16px;
+      margin-right: 8px;
+      margin-bottom: 2px; 
+    } 
+  }
+
+
+  //入力エリア
+  &__input{
+    @include Input_area;
+
+
+  }
+
+  //テキストエリア
+  textarea{
+    height:80px;
+  }
+
+  //会員登録ボタン
+  &__submit{
+    text-align: center;
+    border-top: 1px solid gray;
+    padding: 10px 0px;
+
+    input{
+      @include Submit_button(blue);
+    }
+  }
+
+  //既存IDをお持ちの方
+  &__existing_id{
+    @include Link_button(#36c2e0);
+    margin-top: 20px;
+  }
+}
+
+//住所登録
+.Address_registration{
+  display:none;
+  @include Frame_position(auto,620px,20px,420px);
+  background-color: white;
+  padding:30px 25px;
+
+  //×（閉じる）ボタン
+  &__close{
+    @include Link_button(gray);
+    position: absolute;
+    z-index: 2;
+    top: 0px;
+    right: 18px;
+    width: 23px;
+    height: 23px;
+    font-size: 42px;
+   
+  }
+  
+  //会員登録
+  &__register{
+    font-weight: 600;
+    padding: 20px 0px 50px 10px;
+    font-size: 24px;
+    color:gray;
+  }
+
+  //フォーム欄
+  &--form{
+    border-top:1px solid gray;
+    padding: 10px;
+    margin: 10px;
+    display:flex;
+  }
+
+  //ラベル
+  &__label{
+    @include Label;
+    display:flex;
+  }
+
+ 
+
+  //ラジオボックス
+  &__radio_button{
+    color: #646166;
+
+    input{
+      margin-right:30px;
+    }
+  }
+
+
+  //入力エリア
+  &__input{
+    @include Input_area;
+  }
+
+  //会員登録ボタン
+  &__submit{
+    text-align: center;
+    border-top: 1px solid gray;
+    padding: 10px 0px;
+
+    input{
+      @include Submit_button(blue);
+    }
+  }
+
+  //既存IDをお持ちの方
+  &__existing_id{
+    @include Link_button(#36c2e0);
+    margin-top: 20px;
+  }
+
+}
+ //必須項目
+ .Address_registration_required_item{
+  background-color:red;
+  color:white;
+  font-weight:bold;
+  margin-right: 10px;
+  width: 40px;
+  height: 20px;
+  text-align: center;
+  border-radius: 5px;
+  
+  &--not_required{
+    background-color:white;
+
+  } 
+}
+
+
+//////↓↓普段は非表示のボタン↓↓//////
+
+//ログインフォーム
+.Login_form{
+  display: none;
+  margin-top:50px;
+
+  //パスワードをお忘れの方ボタン
+  &__forget_password{
+    @include Link_button(#36c2e0);
+  }
+
+  //はじめてご利用になる方ボタン
+  &__first_use{
+    @include Link_button(#36c2e0);
+  }  
+
+  //ログインボタン
+  &__submit{
+    margin: 20px 0px;
+
+    input{
+      @include Submit_button(blue);
+      width: 100%;
+    }
+  }
+
+  &__mail_address{
+    input{
+      @include Input_area;
+    }
+  }
+
+  &__password{
+    input{
+      @include Input_area;
+    }
+  }  
+}
+
+
+//パスワードをお忘れの方
+.Password_forget{
+  display:none;
+  
+  @include Frame_position(auto,620px,20%,30%);
+  background-color:white;
+
+  //「メールアドレスを変更した方」ボタン
+  &__existing_id{
+    @include Link_button(#36c2e0);
+  }
+  
+  //「再発行する」ボタン
+  &__register{
+    input{
+      @include Submit_button(blue);
+    }
+  }
+}
+
+//メールアドレスを変更した方
+.MailAddress_forget{
+  display:none;
+  @include Frame_position(732px,620px,20%,30%);
+  background-color:white;
+
+  //「再発行依頼をする」ボタン
+  &__submit{
+    input{
+      @include Submit_button(blue);
+    }
+  }
+  
+}
+
+//
+.Address_Member_registration{
+  &__birthday_list{
+    select{
+      width:120px;
+      font-size:14px;
+      background: url(/assets/pulldown.gif) no-repeat 94% 50%,linear-gradient(to bottom, #ffffff 0%,#ececec 100%);
+    }
+  }
+}
+
+
+.Login_footer{
+  position:fixed;
+  bottom:0px;
+  width:100%;
+  padding:20px 0px;
+  background: black;
+}
