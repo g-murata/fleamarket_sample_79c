@@ -9,4 +9,5 @@ Rails.application.routes.draw do
 
   root to: "home#index"
   resources :users, only: [:show, :edit, :update]
+  resources :user_addresses, only: [:edit, :update]
 end

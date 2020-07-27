@@ -1,9 +1,6 @@
-%h2
-  配送先登録
-
-= form_for @user_address do |f|
-  = render "devise/shared/error_messages", resource: @user_address
-
+%h2 配送先の編集
+= link_to "戻る", :back
+= form_for(@user_address) do |f|
   .field
     = f.label :address_last_name
     = f.text_field :address_last_name
@@ -44,7 +41,5 @@
     = f.label :phone_number
     = f.text_field :phone_number
 
-  .actions
-    = f.submit "Sign up"
-
-= render "devise/shared/links"
+  .action
+    = f.submit "Update"
