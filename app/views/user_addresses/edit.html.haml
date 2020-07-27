@@ -1,6 +1,11 @@
 %h2 配送先の編集
 = link_to "戻る", :back
 = form_for(@user_address) do |f|
+  - if @user_address.errors.any?
+    %h2= "#{@user_address.errors.full_messages.count}件のエラーが発生しました。"
+    %ul
+      - @user_address.errors.full_messages.each do |message|
+        %li= message
   .field
     = f.label :address_last_name
     = f.text_field :address_last_name

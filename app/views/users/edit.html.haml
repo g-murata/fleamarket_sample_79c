@@ -1,6 +1,7 @@
 %h2 プロフィール編集
 = link_to "戻る", :back
 = form_for(current_user) do |f|
+  = render "devise/shared/error_messages", resource: current_user
   .field
     = f.label :nickname
     = f.text_field :nickname
@@ -8,6 +9,18 @@
   .field
     = f.label :email
     = f.email_field :email, autofocus: true, autocomplete: "email"
+
+  .field
+    = f.label :password
+    - if @minimum_password_length
+      %em
+        = @minimum_password_length 
+        文字以上
+    = f.password_field :password, autocomplete: "new-password"
+
+  .field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, autocomplete: "new-password"
 
   .field
     = f.label :last_name
@@ -32,8 +45,6 @@
   .field
     = f.label :introduction
     = f.text_field :introduction
-
-
 
   .action
     = f.submit "Update"
