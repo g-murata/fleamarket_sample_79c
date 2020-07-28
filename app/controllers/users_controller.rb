@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      redirect_to root_path
+      redirect_to root_path, notice: 'プロフィールを更新しました'
     else
       @user_address = UserAddress.find_by(user_id: current_user.id)
       render :show

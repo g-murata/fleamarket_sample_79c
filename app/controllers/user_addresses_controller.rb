@@ -3,7 +3,7 @@ class UserAddressesController < ApplicationController
   def update
     @user_address = UserAddress.find(params[:id])
     if @user_address.update(user_address_params)
-      redirect_to root_path
+      redirect_to root_path, notice: '配送先情報を更新しました'
     else
       render 'users/show'
     end
