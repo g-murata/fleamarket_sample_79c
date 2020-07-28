@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   end
 
   root to: "home#index"
-  resources :users, only: [:show, :edit, :update]
-  resources :user_addresses, only: [:edit, :update]
+  resources :users, only: [:show, :update]
+  resources :user_addresses, only: [:update]
 end

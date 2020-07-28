@@ -1,14 +1,11 @@
 class UserAddressesController < ApplicationController
-  def edit
-    @user_address = UserAddress.find(params[:id])
-  end
 
   def update
     @user_address = UserAddress.find(params[:id])
     if @user_address.update(user_address_params)
       redirect_to root_path
     else
-      render :edit
+      render 'users/show'
     end
   end
 

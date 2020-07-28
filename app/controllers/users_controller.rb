@@ -1,15 +1,14 @@
 class UsersController < ApplicationController
   def show
-  end
-
-  def edit
+    @user_address = UserAddress.find_by(user_id: current_user.id)
   end
 
   def update
     if current_user.update(user_params)
       redirect_to root_path
     else
-      render :edit
+      @user_address = UserAddress.find_by(user_id: current_user.id)
+      render :show
     end
   end
 
