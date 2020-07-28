@@ -85,13 +85,13 @@ RSpec.describe User, type: :model do
         expect(user.errors[:password]).to include("は7文字以上で入力してください")
       end
 
-      it "last_name_kanaの入力が全角平仮名かどうか" do
+      it "last_name_kanaが全角平仮名でないと登録できないこと" do
         user = build(:user, last_name_kana: "サンプル")
         user.valid?
         expect(user.errors[:last_name_kana]).to include("は不正な値です")
       end
   
-      it "first_name_kanaの入力が全角平仮名かどうか" do
+      it "first_name_kanaが全角平仮名でないと登録できないこと" do
         user = build(:user, first_name_kana: "サンプル")
         user.valid?
         expect(user.errors[:first_name_kana]).to include("は不正な値です")
