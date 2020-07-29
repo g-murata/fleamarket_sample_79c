@@ -1,0 +1,176 @@
+.profile-clicked
+  .profile-clicked__wrapper
+    .profile-clicked__wrapper__contents
+      .profile-clicked__wrapper__contents__content
+        .profile-clicked__wrapper__contents__content__details
+          %ul.profile-clicked__wrapper__contents__content__details__detail.clearfix
+            %li.profile-clicked__wrapper__contents__content__details__detail__profile-edit.active
+              プロフィール編集
+            %li.profile-clicked__wrapper__contents__content__details__detail__card
+              カード情報
+            %li.profile-clicked__wrapper__contents__content__details__detail__address
+              配送先
+          .profile-clicked__wrapper__contents__content__details__contents
+            %ul.profile-clicked__wrapper__contents__content__details__contents__profile-edit.show
+              %li
+                ニックネーム:
+                %input
+              %li
+                email:
+                %input
+              %li
+                パスワード:
+                %input
+              %li
+                名前（漢字）:
+                %input
+              %li
+                苗字（漢字）:
+                %input
+              %li
+                名前（かな）:
+                %input
+              %li
+                苗字（かな）:
+                %input
+              %li
+                誕生日:
+                %input(type="date")
+              %li.intro
+                自己紹介:
+                %textarea.intro
+              .actions2
+                %a.esc ×
+            %ul.profile-clicked__wrapper__contents__content__details__contents__card
+              = form_tag("/payments", method: :post, id: 'charge-form') do
+                %span.charge-errors
+                .register-inner__content
+
+                  .form-group
+                    %span.form-group__registration_font カード番号
+                    %span.form-group__require-icon 必須
+                    %input.form-group__number.input-default{maxlength: "16", name: "number", placeholder: "カード番号", type: "text", id: "payment_card_no"}/
+                    = image_tag "card.png", class:"card-png"
+
+                  .form-group
+                    %span.form-group__registration_font 有効期限
+                    %span.form-group__require-icon 必須
+                    .form-group__expiration_date_box
+                      .form-group__expiration_date_box__wrap
+                        %select.form-group__exp_month#payment_expiration_date_1i{maxlength: "2", name: "exp_month", type: "text"}
+                          %option{value: "1"}01
+                          %option{value: "2"}02
+                          %option{value: "3"}03
+                          %option{value: "4"}04
+                          %option{value: "5"}05
+                          %option{value: "6"}06
+                          %option{value: "7"}07
+                          %option{value: "8"}08
+                          %option{value: "9"}09
+                          %option{value: "10"}10
+                          %option{value: "11"}11
+                          %option{value: "12"}12
+                        %i.fas.fa-angle-down.payment-select-icon
+                        %text.form-group__expiration_date_box__text 月
+
+                    .expiration_date_box
+                      .expiration_date_box__wrap
+                        %select.exp_year#payment_expiration_date_2i{maxlength: "4", name: "exp_year", type: "text"}
+                          %option{value: "2019"}19
+                          %option{value: "2020"}20
+                          %option{value: "2021"}21
+                          %option{value: "2022"}22
+                          %option{value: "2023"}23
+                          %option{value: "2024"}24
+                          %option{value: "2025"}25
+                          %option{value: "2026"}26
+                          %option{value: "2027"}27
+                          %option{value: "2028"}28
+                          %option{value: "2029"}29
+                        %i.fas.fa-angle-down.payment-select-icon
+                        %text.expiration_date_box__text 年
+
+                  .form-group
+                    %span.form-group__registration_font セキュリティー番号
+                    %span.form-group__require-icon 必須
+                    %input.form-group__cvc.input-default{maxlength: "3", name: "cvc", placeholder: "カード背面もしくは４桁もしくは３桁の番号", type: "text", id: "payment_card_cvc"}
+                    .form-group__card-indo
+                      カード裏面の番号とは
+                  .actions
+                    %button.register-member#submit-button{type: "submit"} 登録完了
+                  .actions2
+                    %a.esc ×
+            %ul.profile-clicked__wrapper__contents__content__details__contents__address
+              %li
+                配送先氏名（漢字）：
+                %input
+              %li
+                配送先氏名（かな）：
+                %input
+              %li
+                郵便番号：
+                %input
+              %li
+                都道府県：
+                %select
+                  %option(value="北海道")北海道
+                  %option(value="青森県")青森県
+                  %option(value="岩手県")岩手県
+                  %option(value="宮城県")宮城県
+                  %option(value="秋田県")秋田県
+                  %option(value="山形県")山形県
+                  %option(value="福島県")福島県
+                  %option(value="茨城県")茨城県
+                  %option(value="栃木県")栃木県
+                  %option(value="群馬県")群馬県
+                  %option(value="埼玉県")埼玉県
+                  %option(value="千葉県")千葉県
+                  %option(value="東京都")東京都
+                  %option(value="神奈川県")神奈川県
+                  %option(value="新潟県")新潟県
+                  %option(value="富山県")富山県
+                  %option(value="石川県")石川県
+                  %option(value="福井県")福井県
+                  %option(value="山梨県")山梨県
+                  %option(value="長野県")長野県
+                  %option(value="岐阜県")岐阜県
+                  %option(value="静岡県")静岡県
+                  %option(value="愛知県")愛知県
+                  %option(value="三重県")三重県
+                  %option(value="滋賀県")滋賀県
+                  %option(value="京都府")京都府
+                  %option(value="大阪府")大阪府
+                  %option(value="兵庫県")兵庫県
+                  %option(value="奈良県")奈良県
+                  %option(value="和歌山県")和歌山県
+                  %option(value="鳥取県")鳥取県
+                  %option(value="島根県")島根県
+                  %option(value="岡山県")岡山県
+                  %option(value="広島県")広島県
+                  %option(value="山口県")山口県
+                  %option(value="徳島県")徳島県
+                  %option(value="香川県")香川県
+                  %option(value="愛媛県")愛媛県
+                  %option(value="高知県")高知県
+                  %option(value="福岡県")福岡県
+                  %option(value="佐賀県")佐賀県
+                  %option(value="長崎県")長崎県
+                  %option(value="熊本県")熊本県
+                  %option(value="大分県")大分県
+                  %option(value="宮崎県")宮崎県
+                  %option(value="鹿児島県")鹿児島県
+                  %option(value="沖縄県")沖縄県
+              %li
+                市区町村：
+                %input
+              %li
+                番地：
+                %input
+              %li
+                建物名：
+                %input
+              %li
+                電話番号：
+                %input
+              .actions2
+                %a.action2__esc ×
