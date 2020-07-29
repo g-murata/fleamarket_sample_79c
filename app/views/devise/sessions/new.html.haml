@@ -1,0 +1,34 @@
+//ログインページ
+.Login_main_page
+  .Login_box
+
+    .Login_box_information
+      .Login_box_information--logo
+        =image_tag '/assets/logo.png'
+
+      .Login_which_one
+        .Login_which_one__first_time_use
+          はじめてご利用になる方
+        .Login_which_one__already_have_account
+          アカウントをお持ちの方
+      
+      //アカウントをお持ちの方をクリックすると表示される。
+      .Login_form
+        .Login_form__mail_address
+          %input{placeholder: 'メールアドレス'}
+        .Login_form__password
+          %input{placeholder: 'パスワード'}
+
+        .Login_form__submit
+          %input{type: 'submit', value: 'ログイン'}
+
+        .Login_form__first_use
+          = icon('fas', 'caret-right',  class: "Account__btn--icon") 
+          はじめてご利用になる方
+
+  .Login_footer
+
+//会員登録
+=render("devise/sessions/member_registration")
+=render("devise/sessions/new_address")
+
