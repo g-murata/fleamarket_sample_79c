@@ -1,0 +1,50 @@
+%h2
+  配送先登録
+
+= form_for @user_address do |f|
+  = render "devise/shared/error_messages", resource: @user_address
+
+  .field
+    = f.label :address_last_name
+    = f.text_field :address_last_name
+
+  .field
+    = f.label :address_first_name
+    = f.text_field :address_first_name
+
+  .field
+    = f.label :address_last_name_kana
+    = f.text_field :address_last_name_kana
+
+  .field
+    = f.label :address_first_name_kana
+    = f.text_field :address_first_name_kana
+
+  .field
+    = f.label :zip_code
+    = f.text_field :zip_code
+
+  .field
+    = f.label :prefecture_id
+    = f.collection_select :prefecture_id, Prefecture.all, :id, :name
+
+  .field
+    = f.label :city
+    = f.text_field :city
+
+  .field
+    = f.label :street
+    = f.text_field :street
+
+  .field
+    = f.label :building_name
+    = f.text_field :building_name
+
+  .field
+    = f.label :phone_number
+    = f.text_field :phone_number
+
+  .actions
+    = f.submit "Sign up"
+
+= render "devise/shared/links"
