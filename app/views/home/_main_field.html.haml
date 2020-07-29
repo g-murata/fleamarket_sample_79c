@@ -1,0 +1,114 @@
+.main-field
+  .main-field__photo
+    .main-field__photo__content
+      %h2.main-field__photo__content__title 
+        %br
+        人生を変えるフリマアプリ
+      %p.main-field__photo__content__text
+        FURIMAは誰でもかんたんに出品・購入できる
+        %br
+        フリマアプリです
+      .main-field__photo__content__btn
+        %a.main-field__photo__content__btn__app(href="#")
+          = image_tag 'Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.png', alt: 'appストアボタン', width: '180px', class: 'main-field__photo__content__btn__app'
+        %a.main-field__photo__content__btn__google(href="#")
+          = image_tag 'en_badge_web_generic.png', alt: 'googleボタン', width: '220px', class: 'main-field__photo__content__btn__goo'
+  .main-field__intro
+    %h2.main-field__intro__title
+      %br
+      FURIMAが選ばれる３つの理由
+    %ul.main-field__intro__lists
+      %li.main-field__intro__lists__list
+        .main-field__intro__lists__list__box
+          %span.main-field__intro__lists__list__box__number 1
+          = image_tag 'pict-reason-01.jpg', alt: '理由１', height: '306px', width: '306px', class: 'main-field__intro__lists__list__pct'
+        %h3.main-field__intro__lists__text
+          %span.main-field__intro__lists__text__enpha ３分
+          ですぐ出品
+        %p.main-field__intro__lists__disc スマホで入力するだけで簡単に出品できる！
+      %li.main-field__intro__lists__list
+        .main-field__intro__lists__list__box
+          %span.main-field__intro__lists__list__box__number 2
+          = image_tag 'pict-reason-02.jpg', alt: '理由２', height: '306px', width: '306px', class: 'main-field__intro__lists__list__pct'
+        %h3.main-field__intro__lists__text
+          %span.main-field__intro__lists__text__enpha シンプル
+          で使いやすい
+        %p.main-field__intro__lists__disc めんどくさい入力は必要なく、検索も購入もスムーズ！
+      %li.main-field__intro__lists__list
+        .main-field__intro__lists__list__box
+          %span.main-field__intro__lists__list__box__number 3
+          = image_tag 'pict-reason-03.jpg', alt: '理由３', height: '306px', width: '306px', class: 'main-field__intro__lists__list__pct'
+        %h3.main-field__intro__lists__text 
+          手数料
+          %span.main-field__intro__lists__text__enpha 業界最安
+        %p.main-field__intro__lists__disc 最大3%でお得に出品&購入！
+  .main-field__dl-field
+    .main-field__dl-field__in
+      .main-field__dl-field__in__title
+        %h2 会員数日本一
+      .main-field__dl-field__in__text
+        %p 
+        FURIMAは、フリマアプリで最も人気 
+        %br
+        出品・購入回数も業界最多です！
+        %br
+        ほしかったあの商品に出会えるかもしれません。
+      .main-field__dl-field__in__btn
+        %a.main-field__dl-field__in__btn__app(href="#")
+          = image_tag 'Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.png', alt: 'appストアボタン', width: '180px', class: 'main-field__dl-field__in__btn__app'
+        %a.main-fielddl-dl-ield__in__btn__goo(href="#")
+          = image_tag 'en_badge_web_generic.png', alt: 'googleボタン', width: '220px', class: '.main-field__dl-field__in__btn__goo'
+  .main-field__feature
+    %h2.main-field__feature__title
+      %br
+      FURIMAの特徴
+    %ul.main-field__feature__lists
+      %li.main-field__feature__lists__list
+        = image_tag 'icon-01.png', alt: '特徴１', height: '337px', width: '277px', class: 'main-field__feature__lists__list__pct'
+        %h3.main-field__feature__lists__list__title 簡単に売り買いできる
+        %p.main-field__feature__lists__list__text スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
+      %li.main-field__feature__lists__list
+        = image_tag 'icon-03.png', alt: '特徴2', height: '337px', width: '277px', class: 'main-field__feature__lists__list__pct'
+        %h3.main-field__feature__lists__list__title 売上金は即日振込みに対応
+        %p.main-field__feature__lists__list__text 午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
+      %li.main-field__feature__lists__list
+        = image_tag 'icon-04.png', alt: '特徴3', height: '337px', width: '277px', class: 'main-field__feature__lists__list__pct'
+        %h3.main-field__feature__lists__list__title 様々な支払いに対応
+        %p.main-field__feature__lists__list__text お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
+  .main-field__pickup
+    %h2.main-field__pickup__title
+      %br
+      ピックアップカテゴリー
+    .main-field__pickup__lists
+      %h3.main-field__pickup__lists__title
+        %a(href="#") 新規投稿商品
+      %ul.main-field__pickup__lists__box
+        %li.main-field__pickup__lists__box__list
+          = image_tag 'a004.png', alt: '商品１', class: 'main-field__pickup__lists__box__list__pct'
+        %li.main-field__pickup__lists__box__list
+          = image_tag 'a001.png', alt: '商品２', class: 'main-field__pickup__lists__box__list__pct'
+        %li.main-field__pickup__lists__box__list
+          = image_tag 'a007.png', alt: '商品３', class: 'main-field__pickup__lists__box__list__pct'
+  .main-field__pickup
+    %h2.main-field__pickup__title
+      %br
+      ピックアップブランド
+    .main-field__pickup__lists
+      %h3.main-field__pickup__lists__title
+        %a(href="#") アーカイバ
+      %ul.main-field__pickup__lists__box
+        %li.main-field__pickup__lists__box__list
+          = image_tag 'a004.png', alt: '商品１', class: 'main-field__pickup__lists__box__list__pct'
+        %li.main-field__pickup__lists__box__list
+          = image_tag 'a001.png', alt: '商品２', class: 'main-field__pickup__lists__box__list__pct'
+        %li.main-field__pickup__lists__box__list
+          = image_tag 'a007.png', alt: '商品３', class: 'main-field__pickup__lists__box__list__pct'
+  %aside.main-field__app-area
+    .main-field__app-area__in
+      %h2.main-field__app-area__in__title だれでもかんたん、人生を変えるフリマアプリ
+      %p.main-field__app-area__in__text 今すぐ無料ダウンロード！
+      .main-field__app-area__in__btn
+        %a.main-field__app-area__in__btn__app(href="#")
+          = image_tag 'Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.png', alt: 'appストアボタン', width: '180px',  class: 'main-field__apparae__in__btn__goo'
+        %a.main-field__app-area__in__btn__goo(href="#")
+          = image_tag 'en_badge_web_generic.png', alt: 'googleボタン', width: '220px', class: 'main-field__apparae__in__btn__goo'
