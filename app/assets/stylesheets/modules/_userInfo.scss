@@ -148,5 +148,10 @@
 }
 .errors{
   width: 100vw;
-  background-color: red;
+  background: linear-gradient(#ff7676, #ff3b3b, #ff7676);
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
