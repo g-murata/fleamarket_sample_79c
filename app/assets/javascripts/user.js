@@ -4,6 +4,10 @@ $(function() {
     $('.profile-clicked').fadeIn();
   });
 
+  $('.actions2').click(function(){
+    $('.profile-clicked').fadeOut();
+  });
+
   // 表示されたウィンドウのタブをクリックした時の挙動
   $('.profile-clicked__wrapper__contents__content__details__detail li').click(function() {
     let index = $('.profile-clicked__wrapper__contents__content__details__detail li').index(this);
