@@ -4,52 +4,43 @@
       = f.fields_for :product_images do |image|
         .Main__left__Image1
           .js-file_group{"data-index" => "#{image.index}"}
-            = image.file_field :url, class: 'js-file'
-            %br/
-            %span.js-remove 削除
+            = image.file_field :image, class: 'js-file'
             - if @product.persisted?
               = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
             - if @product.persisted?
               .js-file_group{"data-index" => "#{@product.product_images.count}"}
-                = file_field_tag :url, name: "product[product_images_attributes][0][url]", class: 'js-file'
-                .js-remove 削除
+                = file_field_tag :image, name: "product[product_images_attributes][0][image]", class: 'js-file'
 
         .Main__left__Kowaku
           .Main__left__Image2
             .js-file_group{"data-index" => 1}
-              %input.js-file{:id => "product_images_attributes_1_url", :name => "product[product_images_attributes][1][url]", :type => "file"}/
-              %br/
-              .js-remove 削除
+              %input.js-file{:id => "product_images_attributes_1_image", :name => "product[product_images_attributes][1][image]", :type => "file"}/
 
           .Main__left__Image3
             .js-file_group{"data-index" => 2}
-              %input.js-file{:id => "product_images_attributes_2_url", :name => "product[product_images_attributes][2][url]", :type => "file"}/
-              %br/
-              .js-remove 削除
+              %input.js-file{:id => "product_images_attributes_2_image", :name => "product[product_images_attributes][2][image]", :type => "file"}/
 
           .Main__left__Image4
             .js-file_group{"data-index" => 3}
-              %input.js-file{:id => "product_images_attributes_3_url", :name => "product[product_images_attributes][3][url]", :type => "file"}/
-              %br/
-              .js-remove 削除
+              %input.js-file{:id => "product_images_attributes_3_image", :name => "product[product_images_attributes][3][image]", :type => "file"}/
 
         .Main__left__kingaku  
           価格#{f.number_field :price}
           %br/
 
 
-        .Main__left__kingaku_kowaku
-          .Main__left__kingaku_kowaku__tesuryo  
-            自動計算
-          .Main__left__kingaku_kowaku__huyouriage
-            自動計算   
+        -# .Main__left__kingaku_kowaku
+        -#   .Main__left__kingaku_kowaku__tesuryo  
+        -#     自動計算
+        -#   .Main__left__kingaku_kowaku__huyouriage
+        -#     自動計算   
 
-        .Main__left__kakakusettei
-          価格設定
-        .Main__left__suryo
-          数量
-        .Main__left__senyoshuppin
-          専用出品
+        -# .Main__left__kakakusettei
+        -#   価格設定
+        -# .Main__left__suryo
+        -#   数量
+        -# .Main__left__senyoshuppin
+        -#   専用出品
 
     .Main__right
       .Main__left__kingaku
@@ -74,11 +65,11 @@
  
       .Main__left__haisouryou
         %p 配送料(配送料金のカラム？)
-        = f.select :haisouryou, Product.bears.keys, id: "select_status"
+        = f.select :shipping_fee, Product.bears.keys, id: "select_status"
 
       .Main__left__haisouhouhou
         %p 配送方法
-        = f.select :delivery_type, Product.houhous.keys, id: "select_status"
+        = f.select :shipping_type, Product.houhous.keys, id: "select_status"
 
       .Main__left__shuppinchiiki
         %p 出品地域
