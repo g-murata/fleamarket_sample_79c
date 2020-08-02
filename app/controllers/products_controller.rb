@@ -1,4 +1,10 @@
 class ProductsController < ApplicationController
+
+  def index
+    # @product = Product.new
+    # @product.product_images.build
+  end
+
   def new
     @product = Product.new
     @product.product_images.build
@@ -23,9 +29,9 @@ class ProductsController < ApplicationController
       :price,             #価格
       :brand_id,          #ブランド名
       :product_status,    #商品の状態
-      #:buyer_address,     #購入者    #一時的にNULL　
+      #:buyer_address,     #購入者の住所    #一時的にNULL　
       :prefecture,        #都道府県
-      :size,              #サイズ一時的にNULL      
+      :size,              #サイズ
       :shipping_fee,      #配送料 
       :shipping_day,      #発送までの日数
       :shipping_type,     #配送方法

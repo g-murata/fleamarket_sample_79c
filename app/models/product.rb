@@ -2,6 +2,19 @@ class Product < ApplicationRecord
   validates_associated :product_images
   validates :product_images, presence: {message: "を最低1枚選択してください"}
 
+  validates :product_name,  presence: { message: "を入力してください"}, length: { maximum: 40 }
+  validates :description,  presence: { message: "を入力してください"}
+  validates :prefecture,  presence: { message: "を入力してください"}
+  #validates :category_id,  presence: { message: "を入力してください"}
+  validates :shipping_day,  presence: { message: "を入力してください"}
+
+  validates :shipping_type,  presence: { message: "を入力してください"}
+  validates :shipping_fee,  presence: { message: "を入力してください"}
+
+  validates :price, presence: { message: "を入力してください"}
+  validates :price, :numericality => { greater_than: 300, less_than: 50000 } 
+
+
   has_many :product_images, dependent: :destroy
   belongs_to :category
   belongs_to :user
