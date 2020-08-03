@@ -29,20 +29,20 @@ class ProductsController < ApplicationController
       :price,             #価格
       :brand_id,          #ブランド名
       :product_status,    #商品の状態
-      #:buyer_address,     #購入者の住所    #一時的にNULL　
+      #:buyer_address,     #購入者の住所 
       :prefecture,        #都道府県
       :size,              #サイズ
       :shipping_fee,      #配送料 
       :shipping_day,      #発送までの日数
       :shipping_type,     #配送方法
       :category_id,       #カテゴリ
-      #:buyer,            #購入者
+      #:buyer_id,         #購入者
       :deal_closed_date,  #取引成立日時
       product_images_attributes: [:image]   #画像複数枚添付用     
     )
     .merge(
-      user_id: current_user.id, #ユーザID：ログイン中のユーザID
-      trading_status: 1         #売買状況：売出し中
+      seller_id: current_user.id, #ユーザID：ログイン中のユーザID
+      trading_status: 1         #売買状況：売出し中（1）
     )  
   end  
 
