@@ -1,9 +1,8 @@
 class ProductsController < ApplicationController
 
   def index
-    # @product = Product.new
-    # @product.product_images.build
-  end
+    @products = Product.includes(:product_images).order('created_at DESC')
+  end  
 
   def new
     @product = Product.new
@@ -15,8 +14,9 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)    
     if @product.save
-      
     else
+      @product.product_images.build if @product.product_images.blank?   #画像が一枚も投稿されていない場合buildメソッドを実行
+
       render :new
     end
   end
