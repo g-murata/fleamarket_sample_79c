@@ -6,7 +6,7 @@
       = f.fields_for :product_images do |image|
         .Main__left__Image1
           .js-file_group{"data-index" => 0}
-            %img.Review_left__No_image{ src: "/assets/Noimage.png", alt: "logo",id: "img1"}
+            %img.Review_left__No_image{ src: "/assets/Noimage.png", alt: "logo",id: "img0"}
             = image.file_field :image,id:"myfile"
 
         .Main__left__Kowaku
@@ -14,15 +14,16 @@
             .js-file_group{"data-index" => 1}
               %img.Review_left__No_image{ src: "/assets/Noimage.png", alt: "logo",id: "img1"}
               %input.js-file{:id => "product_images_attributes_1_image", :name => "product[product_images_attributes][1][image]", :type => "file"}/
+              -# = image.file_field :image,id:"myfile2"
 
           .Main__left__Image3
             .js-file_group{"data-index" => 2}
-              %img.Review_left__No_image{ src: "/assets/Noimage.png", alt: "logo",id: "img1"}
+              %img.Review_left__No_image{ src: "/assets/Noimage.png", alt: "logo",id: "img2"}
               %input.js-file{:id => "product_images_attributes_2_image", :name => "product[product_images_attributes][2][image]", :type => "file"}/
 
           .Main__left__Image4
             .js-file_group{"data-index" => 3}
-              %img.Review_left__No_image{ src: "/assets/Noimage.png", alt: "logo",id: "img1"}
+              %img.Review_left__No_image{ src: "/assets/Noimage.png", alt: "logo",id: "img3"}
               %input.js-file{:id => "product_images_attributes_3_image", :name => "product[product_images_attributes][3][image]", :type => "file"}/
 
 
@@ -47,7 +48,7 @@
         = f.collection_select :brand_id, Brand.all, :id, :name, { include_blank: "---", selected:"" }, id: "category_form"
 
       .Main__left__size
-        %p サイズ（任意）
+        %p サイズ
         #{f.text_field :size}
    
         
