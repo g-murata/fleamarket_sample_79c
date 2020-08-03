@@ -121,7 +121,7 @@
   &__photo{
     width: 100vw;
     height: 560px;
-    background-image: url('items/bg-mainVisual-pict_pc');
+    background-image: image-url('item/bg-mainVisual-pict_pc');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
@@ -236,7 +236,7 @@
   &__dl-field{
     width: 100vw;
     height: 400px;
-    background-image: url('items/bg-topMiddleDl-pict.jpg');
+    background-image: image-urlurl('item/bg-topMiddleDl-pict.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
@@ -362,7 +362,7 @@
   }
   &__app-area{
     padding:  100px 40px;
-    background-image: url('items/bg-appBanner-pict');
+    background-image: image-url('item/bg-appBanner-pict');
     background-size: cover;
     background-position: center;
     position: relative;
