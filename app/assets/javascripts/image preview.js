@@ -1,5 +1,3 @@
-//カウントアップできるようにしたい★
-
 $(function(){
   
   $('#product_images_attributes_0_image').change(function(e){
