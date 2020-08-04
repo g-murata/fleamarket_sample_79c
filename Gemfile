@@ -74,3 +74,5 @@ group :production do
 end
 
 gem 'payjp'
+gem 'carrierwave'
+gem 'mini_magick'
