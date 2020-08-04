@@ -87,6 +87,10 @@
   &__first_time_use{
     @include Submit_button(blue);
     margin-top:80px;
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
   }
 
   //アカウントをお持ちの方
@@ -99,7 +103,7 @@
 
 //会員登録画面//
 .Member_registration{
-  display:none;       
+  // display:none;
 
   @include Frame_position(auto,620px,20px,420px);
   background-color: white;
@@ -186,12 +190,17 @@
   &__existing_id{
     @include Link_button(#36c2e0);
     margin-top: 20px;
+
+    a {
+      color: #36c2e0;
+      text-decoration: none;
+    }
   }
 }
 
 //住所登録
 .Address_registration{
-  display:none;
+  // display:none;
   @include Frame_position(auto,620px,20px,420px);
   background-color: white;
   padding:30px 25px;
@@ -263,6 +272,10 @@
   &__existing_id{
     @include Link_button(#36c2e0);
     margin-top: 20px;
+    a {
+      color: #36c2e0;
+      text-decoration: none;
+    }
   }
 
 }
@@ -299,6 +312,10 @@
   //はじめてご利用になる方ボタン
   &__first_use{
     @include Link_button(#36c2e0);
+    a {
+      color: #36c2e0;
+      text-decoration: none;
+    }
   }  
 
   //ログインボタン

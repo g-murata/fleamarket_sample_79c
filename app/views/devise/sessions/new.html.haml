@@ -8,27 +8,28 @@
 
       .Login_which_one
         .Login_which_one__first_time_use
-          はじめてご利用になる方
+          = link_to "はじめてご利用になる方", new_user_registration_path
         .Login_which_one__already_have_account
           アカウントをお持ちの方
       
       //アカウントをお持ちの方をクリックすると表示される。
       .Login_form
-        .Login_form__mail_address
-          %input{placeholder: 'メールアドレス'}
-        .Login_form__password
-          %input{placeholder: 'パスワード'}
-
-        .Login_form__submit
-          %input{type: 'submit', value: 'ログイン'}
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .Login_form__mail_address
+            = f.email_field :email, autofocus: true, placeholder: 'メールアドレス'
+          .Login_form__password
+            = f.password_field :password, autocomplete: "off", placeholder: 'パスワード'
+          .Login_form__submit
+            = f.submit "ログイン", class: 'Button UserButton'
 
         .Login_form__first_use
-          = icon('fas', 'caret-right',  class: "Account__btn--icon") 
-          はじめてご利用になる方
-
+          = link_to new_user_registration_path do
+            = icon('fas', 'caret-right', class: 'Account__btn-icon')
+            はじめてご利用になる方
+            
   .Login_footer
 
 //会員登録
-=render("devise/sessions/member_registration")
-=render("devise/sessions/new_address")
+-# =render("devise/sessions/member_registration")
+-# =render("devise/sessions/new_address")
 

@@ -1,50 +1,79 @@
-%h2
-  配送先登録
+//住所登録
+.Address_registration
+  -# .Address_registration__close
+  -#   ×
 
-= form_for @user_address do |f|
-  = render "devise/shared/error_messages", resource: @user_address
+  .Address_registration__register
+    送付先登録
 
-  .field
-    = f.label :address_last_name
-    = f.text_field :address_last_name
+  //■フォーム
+  = form_for @user_address do |f|
+    = render "devise/shared/error_messages", resource: @user_address
 
-  .field
-    = f.label :address_first_name
-    = f.text_field :address_first_name
+    .Address_registration__destination_last.Address_registration--form
+      %ul.Address_registration__label        
+        %li.Address_registration_required_item 必須
+        %li 送付先氏名(苗字)
+      = f.text_field :address_last_name, class: "Address_registration__input"
 
-  .field
-    = f.label :address_last_name_kana
-    = f.text_field :address_last_name_kana
+    .Address_registration__destination_first.Address_registration--form
+      %ul.Address_registration__label
+        %li.Address_registration_required_item 必須
+        %li 送付先氏名(名前)
+      = f.text_field :address_first_name, class: "Address_registration__input"
 
-  .field
-    = f.label :address_first_name_kana
-    = f.text_field :address_first_name_kana
+    .Address_registration__destination_furigana_last.Address_registration--form
+      %ul.Address_registration__label
+        %li.Address_registration_required_item 必須
+        %li 送付先氏名(苗字:ふりがな)
+      = f.text_field :address_last_name_kana, class: "Address_registration__input"
 
-  .field
-    = f.label :zip_code
-    = f.text_field :zip_code
+    
+    .Address_registration__destination_furigana_first.Address_registration--form
+      %ul.Address_registration__label
+        %li.Address_registration_required_item 必須  
+        %li 送付先氏名(名前:ふりがな)
+      = f.text_field :address_first_name_kana, class: "Address_registration__input"
 
-  .field
-    = f.label :prefecture_id
-    = f.collection_select :prefecture_id, Prefecture.all, :id, :name
+    .Address_registration__postal_code.Address_registration--form
+      %ul.Address_registration__label
+        %li.Address_registration_required_item 必須  
+        %li 郵便番号
+      = f.text_field :zip_code, class: "Address_registration__input", placeholder: "ハイフン除く"
 
-  .field
-    = f.label :city
-    = f.text_field :city
+    .Address_registration__prefectures.Address_registration--form
+      %ul.Address_registration__label
+        %li.Address_registration_required_item 必須  
+        %li 都道府県
+      .Address_Member_registration__birthday_list.Member_registration__birthday_list
+        = f.collection_select :prefecture_id, Prefecture.all, :id, :name
+      
+    .Address_registration__municipalities.Address_registration--form
+      %ul.Address_registration__label
+        %li.Address_registration_required_item 必須  
+        %li  市町村
+      = f.text_field :city, class: "Address_registration__input"
+      
+    .Address_registration__address.Address_registration--form
+      %ul.Address_registration__label
+        %li.Address_registration_required_item 必須    
+        %li  番地
+      = f.text_field :street, class: "Address_registration__input"
+      
+    .Address_registration__building_and_room_number.Address_registration--form
+      %ul.Address_registration__label 
+        %li.Address_registration_required_item.Address_registration_required_item--not_required
+        %li  建物・部屋番号
+      = f.text_field :building_name, class: "Address_registration__input"
+      
+    .Address_registration__phone_number.Address_registration--form
+      %ul.Address_registration__label
+        %li.Address_registration_required_item.Address_registration_required_item--not_required
+        %li  電話番号
+      = f.text_field :phone_number, class: "Address_registration__input"
 
-  .field
-    = f.label :street
-    = f.text_field :street
+    .Address_registration__submit
+      = f.submit "登録する", class: "Address_registration__input"
 
-  .field
-    = f.label :building_name
-    = f.text_field :building_name
-
-  .field
-    = f.label :phone_number
-    = f.text_field :phone_number
-
-  .actions
-    = f.submit "Sign up"
-
-= render "devise/shared/links"
+    .Address_registration__existing_id
+      = link_to "既存IDをお持ちの方はこちら（ログイン）", new_user_session_path
