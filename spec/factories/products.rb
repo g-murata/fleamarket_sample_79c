@@ -6,10 +6,10 @@ FactoryBot.define do
     price                       {"2980"}
     product_status              {1}
     prefecture                  {6}
-    size                        {"100"}
+    size                        {0}
     shipping_day                {1}
     shipping_type               {1}
-    shipping_fee                {2}
+    shipping_fee                {0}
     trading_status              {1}
     deal_closed_date            {"2020-08-02 02:00:03.803865"}  
     category                    { create(:category) }
