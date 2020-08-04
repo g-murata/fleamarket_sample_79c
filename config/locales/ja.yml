@@ -7,6 +7,29 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    models:
+      user: ユーザー
+      user_address: 配送先
+    attributes:
+      user:
+        nickname: ニックネーム
+        last_name: 苗字
+        first_name: 名前
+        last_name_kana: ふりがな(苗字)
+        first_name_kana: ふりがな(名前)
+        birthday: 生年月日
+        introduction: 自己紹介
+      user_address:
+        address_last_name: 送付先氏名(苗字)
+        address_first_name: 送付先氏名(名前)
+        address_last_name_kana: 送付先氏名(苗字:ふりがな)
+        address_first_name_kana: 送付先氏名(名前:ふりがな)
+        zip_code: 郵便番号
+        prefecture_id: 都道府県
+        city: 市町村
+        street: 番地
+        building_name: 建物・部屋番号
+        phone_number: 電話番号
   date:
     abbr_day_names:
     - 日

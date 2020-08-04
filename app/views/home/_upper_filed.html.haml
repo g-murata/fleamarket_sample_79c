@@ -381,8 +381,14 @@
         %li.upper-field__navigate__left-side__bland<
           %a(href="#") ブランド
     %ul.upper-field__navigate__right-side
-      %li.upper-field__navigate__right-side__login
-        %a(href="#") ログイン
-      %li.upper-field__navigate__right-side__register
-        %a(href="#") 新規会員登録
+      - if user_signed_in?
+        %li.upper-field__navigate__right-side__login
+          = link_to "ログアウト", destroy_user_session_path, method: :delete
+        %li.upper-field__navigate__right-side__register
+          = link_to "マイページ", user_path(current_user.id)
+      - else
+        %li.upper-field__navigate__right-side__login
+          = link_to "ログイン", new_user_session_path
+        %li.upper-field__navigate__right-side__register
+          = link_to "新規会員登録", new_user_registration_path
  
