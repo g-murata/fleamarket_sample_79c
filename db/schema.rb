@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_08_01_023337) do
     t.bigint "brand_id"
     t.integer "product_status", null: false
     t.integer "prefecture", null: false
-    t.integer "size", null: false
+    t.integer "size"
     t.integer "shipping_day", null: false
     t.integer "shipping_type", null: false
     t.integer "shipping_fee", null: false
