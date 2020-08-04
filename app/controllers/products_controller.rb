@@ -7,8 +7,6 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.product_images.build
-    @category = Category.all
-    @brand = Brand.all
   end
 
   def create

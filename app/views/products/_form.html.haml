@@ -3,28 +3,27 @@
   .Main
     = render 'layouts/error_messages', model: f.object
     .Main__left
-      = f.fields_for :product_images do |image|
+      = f.fields_for :product_images,@product.product_images.new do |image|
         .Main__left__Image1
-          .js-file_group{"data-index" => 0}
-            %img.Review_left__No_image{ src: "/assets/Noimage.png", alt: "logo",id: "img0"}
-            = image.file_field :image,id:"myfile"
+          .image_group{"data-index" => 0}
+            %img.Review_left__No_image{ src: "/assets/img_photo.gif", alt: "logo",id: "img0"}
+            = image.file_field :image,id:"product_images_attributes_0_image"
 
         .Main__left__Kowaku
           .Main__left__Image2
-            .js-file_group{"data-index" => 1}
-              %img.Review_left__No_image{ src: "/assets/Noimage.png", alt: "logo",id: "img1"}
-              %input.js-file{:id => "product_images_attributes_1_image", :name => "product[product_images_attributes][1][image]", :type => "file"}/
-              -# = image.file_field :image,id:"myfile2"
+            .image_group{"data-index" => 1}
+              %img.Review_left__No_image{ src: "/assets/icon_camera.gif", alt: "logo",id: "img1"}
+              %input{:id => "product_images_attributes_1_image", :name => "product[product_images_attributes][1][image]", :type => "file"}/
 
           .Main__left__Image3
-            .js-file_group{"data-index" => 2}
-              %img.Review_left__No_image{ src: "/assets/Noimage.png", alt: "logo",id: "img2"}
-              %input.js-file{:id => "product_images_attributes_2_image", :name => "product[product_images_attributes][2][image]", :type => "file"}/
+            .image_group{"data-index" => 2}
+              %img.Review_left__No_image{ src: "/assets/icon_camera.gif", alt: "logo",id: "img2"}
+              %input{:id => "product_images_attributes_2_image", :name => "product[product_images_attributes][2][image]", :type => "file"}/
 
           .Main__left__Image4
-            .js-file_group{"data-index" => 3}
-              %img.Review_left__No_image{ src: "/assets/Noimage.png", alt: "logo",id: "img3"}
-              %input.js-file{:id => "product_images_attributes_3_image", :name => "product[product_images_attributes][3][image]", :type => "file"}/
+            .image_group{"data-index" => 3}
+              %img.Review_left__No_image{ src: "/assets/icon_camera.gif", alt: "logo",id: "img3"}
+              %input{:id => "product_images_attributes_3_image", :name => "product[product_images_attributes][3][image]", :type => "file"}/
 
 
 
@@ -48,22 +47,22 @@
         = f.collection_select :brand_id, Brand.all, :id, :name, { include_blank: "---", selected:"" }, id: "category_form"
 
       .Main__left__size
-        %p サイズ
-        #{f.text_field :size}
+        %p サイズ（任意）
+        = f.select :size, Product.sizes.keys,{prompt:"サイズを選択しない"},  id: "select_status"
    
         
 
       .Main__left__jyoutai
         %p 状態
-        = f.select :product_status, Product.statuses.keys,{prompt:"---"},  id: "select_status"
+        = f.select :product_status, Product.product_statuses.keys,{prompt:"---"},  id: "select_status"
  
       .Main__left__haisouryou
         %p 配送料
-        = f.select :shipping_fee, Product.bears.keys,{prompt:"---"},  id: "select_status"
+        = f.select :shipping_fee, Product.shipping_fees.keys,{prompt:"---"},  id: "select_status"
 
       .Main__left__haisouhouhou
         %p 配送方法
-        = f.select :shipping_type, Product.houhous.keys,{prompt:"---"},  id: "select_status"
+        = f.select :shipping_type, Product.shipping_types.keys,{prompt:"---"},  id: "select_status"
 
       .Main__left__shuppinchiiki
         %p 出品地域
@@ -72,7 +71,7 @@
 
       .Main__left__hassoubinomeyasu
         %p 発送日の目安
-        = f.select :shipping_day, Product.days.keys,{prompt:"---"}, id: "select_status"
+        = f.select :shipping_day, Product.shipping_days.keys,{prompt:"---"}, id: "select_status"
 
 
   .Main_submit
