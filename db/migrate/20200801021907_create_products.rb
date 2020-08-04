@@ -6,7 +6,6 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.integer :price, null: false
       t.references :brand, foreign_key: true, null: true
       t.integer :product_status, null: false
-      # t.integer :buyer_address, null: true #, foreign_key: true
       t.integer :prefecture, null: false
       t.integer :size, null: false 
       t.integer :shipping_day, null: false 
@@ -14,11 +13,8 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.integer :shipping_fee, null: false 
       t.references :category , null: false, foreign_key: true
       t.integer :trading_status, null: false
-      # t.references :user, foreign_key: true
-      # t.integer :buyer #, foreign_key: true
       t.references :seller, null: false , foreign_key: { to_table: :users }
       t.references :buyer, foreign_key: { to_table: :users }
-
       t.timestamp :deal_closed_date
 
       t.timestamps
