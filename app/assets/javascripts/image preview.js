@@ -1,5 +1,8 @@
+//カウントアップできるようにしたい★
+
 $(function(){
-  $('#myfile').change(function(e){
+  
+  $('#product_images_attributes_0_image').change(function(e){
     //ファイルオブジェクトを取得する
     var file = e.target.files[0];
     var reader = new FileReader();
