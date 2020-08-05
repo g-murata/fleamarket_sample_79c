@@ -73,5 +73,6 @@ group :production do
   gem 'unicorn'
 end
 
+gem 'payjp'
 gem 'carrierwave'
 gem 'mini_magick'
