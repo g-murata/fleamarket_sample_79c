@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :users, only: [:show, :update]
   resources :user_addresses, only: [:update]
-  # resources :credit_cards, only: [:new, :show, :destroy] do
   resources :credit_cards, only: [:show, :destroy] do
     collection do
       post 'pay', to: 'credit_cards#pay'
