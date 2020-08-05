@@ -2,19 +2,19 @@
 .breadcrumbs
   %ul.Category
     %li.Category__list
-      %a.Category__link{href: "#"} Shoppies
+      = link_to "Shoppies", "#", class: "Category__link"
     %li.Category__list
       = icon('fas', 'angle-right')
     %li.Category__list
-      %a.Category__link{href: "#"} ベビー・キッズ
+      = link_to "ベビー・キッズ", "#", class: "Category__link"
     %li.Category__list
       = icon('fas', 'angle-right')
     %li.Category__list
-      %a.Category__link{href: "#"} ベビー服(男女兼用)~95cm
+      = link_to "ベビー服(男女兼用)~95cm", "#", class: "Category__link"
     %li.Category__list
       = icon('fas', 'angle-right')
     %li.Category__list
-      %a.Category__link{href: "#"} アウター
+      = link_to "アウター", "#", class: "Category__link"
     %li.Category__list
       = icon('fas', 'angle-right')
     %li.Category__list--bold
@@ -47,11 +47,11 @@
         %tr
           %th カテゴリー
           %td
-            %a{href: "#"} ベビー・キッズ
+            = link_to "ベビー・キッズ", "#"
             %br
-            %a{href: "#"} ベビー服(男女兼用)
+            = link_to "ベビー服(男女兼用)", "#"
             %br
-            %a{href: "#"} アウター
+            = link_to "アウター", "#"
             %br
         %tr
           %th ブランド
@@ -67,21 +67,23 @@
           %td 送料込み（出品者負担）
         %tr
           %th 発送元の地域
-          %td 
-            %a{href: "#"} 岩手県
+          %td
+            = link_to "岩手県", "#"
         %tr
           %th 発送日の目安
           %td 4-7日で発送
     .Product__option
       %ul.Option
         %li.Option__like-btn
-          %a.Option__link--blue{href: "#"}
-            = icon('fas', 'star')
-            お気に入り 0
+          = link_to "#", class: "Option__link--blue" do
+            .Option__link-wrapper
+              = icon('fas', 'star')
+              %p お気に入り 0
         %li.Option__report-btn
-          %a.Option__link--black{href: "#"}
-            = icon('fas', 'flag')
-            不適切な商品の通報
+          = link_to "#", class: "Option__link--black" do
+            .Option__link-wrapper
+              = icon('fas', 'flag')
+              %p 不適切な商品の通報
 
   .Comment
     .Comment__form
@@ -97,21 +99,22 @@
   .Related
     %ul.Related__links
       %li
-        %a.Related__link{href: "#"}
-          = icon('fas', 'angle-left')
-          前の商品
+        = link_to "#", class: "Related__link" do
+          .Related__link-wrapper
+            = icon('fas', 'angle-left')
+            %p 前の商品
       %li
-        %a.Related__link{href: "#"}
-          後ろの商品
-          = icon('fas', 'angle-right')
+        = link_to "#", class: "Related__link" do
+          .Related__link-wrapper
+            %p 後ろの商品
+            = icon('fas', 'angle-right')
     .Related__more
-      %a.Related__more-link{href: "#"}
-        ベビー・キッズをもっと見る
+      = link_to "ベビー・キッズをもっと見る", "#", class: "Related__more-link"
     .Related__products
       = render "related"
 
 = render 'home/under_field'
-%a(href="#")
+= link_to "#" do
   .exhibition-btn
     %span.exhibition-btn__text 出品する
     = image_tag 'icon_camera.png', alt: '出品', height: '54px', width: '54px', class: '.exhibition-btn__icon'

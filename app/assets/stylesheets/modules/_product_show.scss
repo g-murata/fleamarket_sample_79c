@@ -170,6 +170,15 @@
           @include Product_btn(#333, 14px, 6px 10px, 10px, #333, 4px);
           cursor: pointer;
         }
+
+        &__link-wrapper {
+          display: flex;
+          align-items: center;
+          p {
+            margin-left: 3px;
+          }
+        }
+
         &__link--blue {
           @include Product_link(#3ccace);
         }
@@ -224,6 +233,14 @@
     }
     &__link {
       @include Product_link(#3ccace);
+    }
+
+    &__link-wrapper {
+      display: flex;
+      align-items: center;
+      p {
+        margin: 0 5px;
+      }
     }
 
 
