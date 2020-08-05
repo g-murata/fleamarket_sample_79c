@@ -1,0 +1,120 @@
+= render 'home/upper_filed'
+.breadcrumbs
+  %ul.Category
+    %li.Category__list
+      = link_to "Shoppies", "#", class: "Category__link"
+    %li.Category__list
+      = icon('fas', 'angle-right')
+    %li.Category__list
+      = link_to "ベビー・キッズ", "#", class: "Category__link"
+    %li.Category__list
+      = icon('fas', 'angle-right')
+    %li.Category__list
+      = link_to "ベビー服(男女兼用)~95cm", "#", class: "Category__link"
+    %li.Category__list
+      = icon('fas', 'angle-right')
+    %li.Category__list
+      = link_to "アウター", "#", class: "Category__link"
+    %li.Category__list
+      = icon('fas', 'angle-right')
+    %li.Category__list--bold
+      products2
+.product_show_wrapper
+  .Product
+    %h2.Product__name
+      products2
+    .Product__main
+      = image_tag "a007.png", class: "Product__main-image"
+    %ul.Product__sub
+      %li
+        = image_tag "a007.png", class: "Product__sub-image"
+      %li
+        = image_tag "a001.png", class: "Product__sub-image"
+      %li
+        = image_tag "a004.png", class: "Product__sub-image"
+    .Product__price-box
+      %p.Product__price
+        ¥1000
+      %p.Product__price-detail
+        (税込)送料込み
+    %p.Product__explanation
+      親譲りの無鉄砲で小供の時から損ばかりしている。 小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。 なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。 弱虫やーい。と囃したからである。小使に負ぶさって帰って来た時、おやじが大きな眼をして二階ぐらいから飛び降りて腰
+    .Product__table
+      %table
+        %tr
+          %th 出品者
+          %td hoge
+        %tr
+          %th カテゴリー
+          %td
+            = link_to "ベビー・キッズ", "#"
+            %br
+            = link_to "ベビー服(男女兼用)", "#"
+            %br
+            = link_to "アウター", "#"
+            %br
+        %tr
+          %th ブランド
+          %td あああ
+        %tr
+          %th 商品のサイズ
+          %td S
+        %tr
+          %th 商品の状態
+          %td 未使用の状態に近い
+        %tr
+          %th 配送料の負担
+          %td 送料込み（出品者負担）
+        %tr
+          %th 発送元の地域
+          %td
+            = link_to "岩手県", "#"
+        %tr
+          %th 発送日の目安
+          %td 4-7日で発送
+    .Product__option
+      %ul.Option
+        %li.Option__like-btn
+          = link_to "#", class: "Option__link--blue" do
+            .Option__link-wrapper
+              = icon('fas', 'star')
+              %p お気に入り 0
+        %li.Option__report-btn
+          = link_to "#", class: "Option__link--black" do
+            .Option__link-wrapper
+              = icon('fas', 'flag')
+              %p 不適切な商品の通報
+
+  .Comment
+    .Comment__form
+      %textarea.Comment__text-form
+      %p.Comment__caution
+        相手のことを考え丁寧なコメントを心がけましょう。
+        %br 
+          不快な言葉遣いなどは利用制限や退会処分となることがあります。
+      %button.Comment__btn{type: "submit"}
+        = icon('fas', 'comment')
+        コメントする
+
+  .Related
+    %ul.Related__links
+      %li
+        = link_to "#", class: "Related__link" do
+          .Related__link-wrapper
+            = icon('fas', 'angle-left')
+            %p 前の商品
+      %li
+        = link_to "#", class: "Related__link" do
+          .Related__link-wrapper
+            %p 後ろの商品
+            = icon('fas', 'angle-right')
+    .Related__more
+      = link_to "ベビー・キッズをもっと見る", "#", class: "Related__more-link"
+    .Related__products
+      = render "related"
+
+= render 'home/under_field'
+= link_to "#" do
+  .exhibition-btn
+    %span.exhibition-btn__text 出品する
+    = image_tag 'icon_camera.png', alt: '出品', height: '54px', width: '54px', class: '.exhibition-btn__icon'
