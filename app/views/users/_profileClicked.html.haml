@@ -114,9 +114,7 @@
                   %label.title カード番号
                   .require 必須
                   = text_field_tag "number", "", class: "number", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
-                  %ul.signup-card-list
-                    %img
-                      = image_tag src="card.png", size: "110x110"
+                  = image_tag src="card.png"
                   %br
                   %label.title 有効期限
                   .require 必須
