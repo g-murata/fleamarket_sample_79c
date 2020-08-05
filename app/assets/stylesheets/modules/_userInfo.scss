@@ -127,12 +127,12 @@
             bottom: 5px;
             position: relative;
               a{
-                border: 2px solid #e7e7e7;
+                border: 2px solid #c5c5c5;
                 text-decoration: none;
-                color: #646166;
+                color: white;
                 border-radius: 6px;
                 padding: 10px 20px;
-                background: linear-gradient(#ffffff, #ececec);
+                background: linear-gradient(#c5c5c5, #949494);
                 font-weight: bold;
                 display: block;
                 position: absolute;
@@ -145,4 +145,13 @@
       }
     }
   }
+}
+.errors{
+  width: 100vw;
+  background: linear-gradient(#ff7676, #ff3b3b, #ff7676);
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
