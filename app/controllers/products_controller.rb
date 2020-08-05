@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
 
 
   def create
-    @product = Product.new(product_params)    
+    @product = Product.new(product_params)
     unless @product.save
       @product.product_images.build if @product.product_images.blank?   #画像が一枚も投稿されていない場合buildメソッドを実行
       render :new
