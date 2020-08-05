@@ -39,8 +39,13 @@
         商品説明#{f.text_field :description}
         %br/      
       .Main__left__category
-        %p カテゴリ
-        = f.collection_select :category_id, Category.all, :id, :name, { include_blank: "---", selected:"" }, id: "category_form"
+        .category
+          .form__label
+            .lavel__name 
+              カテゴリー
+            .lavel__Required
+              [必須]
+          =f.collection_select :category_id, @category_parent_array, :id, :name,{ include_blank: "選択してください"},class:"serect_field"
         
       .Main__left__brand
         %p ブランド（任意）
@@ -49,7 +54,7 @@
       .Main__left__size
         %p サイズ（任意）
         = f.select :size, Product.sizes.keys,{prompt:"サイズを選択しない"},  id: "select_status"
-   
+
         
 
       .Main__left__jyoutai
