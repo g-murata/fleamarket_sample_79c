@@ -1,0 +1,22 @@
+%h1 テスト画面
+
+%p 投稿ID
+=@product.id
+%p 投稿名
+=@product.product_name
+
+%p 投稿者のユーザID
+=@product.seller_id
+
+%p 現在ログイン中のユーザID
+=current_user.id
+%p 現在ログイン中のユーザ名
+=User.find_by(id:current_user.id).nickname
+
+
+%h1 ■ログイン者のIDと投稿者のIDが一致している場合は編集削除ができます■
+%li
+  = link_to '編集', "#"
+%li
+  = link_to '削除', product_path(@product.id), method: :delete
+
