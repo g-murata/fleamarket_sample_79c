@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :users, only: [:show, :update]
   resources :user_addresses, only: [:update]
-  resources :products, only: [:new, :create, :index]
+  resources :products, only: [:new, :create, :index, :show, :destroy]
+  resources :items, only: [:index]
 end
