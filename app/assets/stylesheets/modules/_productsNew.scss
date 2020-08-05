@@ -13,7 +13,6 @@
 }
 
 @mixin FixImage {
-    position:absolute;
     top: 0;
     bottom: 0;
     left: 0;
@@ -177,10 +176,10 @@
         width: 370px;
         height: 370px;
         border: 1px solid #3CCACE;
+        display:flex;
 
         img{
-          height:100%;
-          width:100%;
+          @include FixImage;
         }
       }
 
@@ -204,7 +203,7 @@
         &__img{
 
             img{
-              
+              position:absolute;
               @include FixImage
               }
         }
@@ -218,6 +217,7 @@
         &__img{
 
             img{
+              position:absolute;
               @include FixImage
               }
         }
@@ -230,6 +230,7 @@
         &__img{
 
             img{
+              position:absolute;
               @include FixImage
             }
         }
