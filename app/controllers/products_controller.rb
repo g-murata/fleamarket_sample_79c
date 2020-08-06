@@ -32,6 +32,14 @@ class ProductsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+  end
+
+
+
   private
   def product_params
     params.require(:product).permit(

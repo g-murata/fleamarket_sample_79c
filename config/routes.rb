@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       post 'pay', to: 'credit_cards#pay'
     end
   end
-  resources :products, only: [:new, :create, :index, :show, :destroy] do
+  resources :products do
     resources :buyers, only: [:index] do
       collection do
         get 'done', to: 'buyers#done'
