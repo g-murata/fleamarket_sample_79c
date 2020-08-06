@@ -1,0 +1,168 @@
+= render "home/upper_filed"
+= form_with(class: "Main_Container", model: @product, local: true) do |f|
+  .Wrapper
+    = render 'layouts/error_messages', model: f.object
+    .Top
+      %h2 編集
+      %p 商品情報を編集してください
+
+    .WrapperContents
+
+      .LeftContents
+        = f.fields_for :product_images,@product.product_images.new do |image|
+          .LeftContents__FirstContent
+            %label          
+              .LeftContents__FirstContent__img
+                =image_tag @product.product_images.find_by(product_id: @product.id).image.url,id: "img0"
+                -# = image_tag src="trading.png",id: "img0" 
+                .image_group{"data-index": 0}
+                  = image.file_field :image,id:"product_images_attributes_0_image"            
+          %ul.LeftContents__SecondContent
+            -# -@product.product_images.count.times do |i|
+            -#   -i = i+1            
+            %li.LeftContents__SecondContent__Left
+              %label            
+                .LeftContents__SecondContent__Left__img
+                  = image_tag src="icon_camera.gif",id: "img1"
+                  %input{id: "product_images_attributes_1_image", :name => "product[product_images_attributes][1][image]", type: "file"}/
+
+            %li.LeftContents__SecondContent__Center
+              %label                
+                .LeftContents__SecondContent__Center__img
+                  = image_tag src="icon_camera.gif",id: "img2"
+                  %input{id: "product_images_attributes_2_image", :name => "product[product_images_attributes][2][image]", type: "file"}/
+
+            %li.LeftContents__SecondContent__Right
+              %label                            
+                .LeftContents__SecondContent__Right__img
+                  = image_tag src="icon_camera.gif",id: "img3"
+                  %input{id: "product_images_attributes_3_image", :name => "product[product_images_attributes][3][image]", type: "file"}/
+
+
+
+        .LeftContents__ThirdContent
+          .LeftContents__ThirdContent__Top
+            .LeftContents__ThirdContent__Top__Left
+              %h2 商品価格(必須)
+            .LeftContents__ThirdContent__Top__Center
+              #{f.number_field :price,placeholder: "300~50,000"}
+            .LeftContents__ThirdContent__Top__Right
+              %p 円
+
+
+          .LeftContents__ThirdContent__Bottom
+            .LeftContents__ThirdContent__Bottom__Left
+              .LeftContents__ThirdContent__Bottom__Left__One
+                %p 決済手数料 
+              .LeftContents__ThirdContent__Bottom__Left__Two
+                %p 0
+              .LeftContents__ThirdContent__Bottom__Left__Three
+                %p 円
+            .LeftContents__ThirdContent__Bottom__Right
+              .LeftContents__ThirdContent__Bottom__Right__One
+                %p 付与予定売上
+              .LeftContents__ThirdContent__Bottom__Right__Two
+                %p 0
+              .LeftContents__ThirdContent__Bottom__Right__Three
+                %p 円
+
+
+
+        .LeftContents__FourthContent
+          .LeftContents__FourthContent__Top
+            %p その他オプション
+          .LeftContents__FourthContent__MiddleBox
+            .LeftContents__FourthContent__MiddleBox__Price
+              .LeftContents__FourthContent__MiddleBox__Price__Left
+                %p 価格設定
+              .LeftContents__FourthContent__MiddleBox__Price__Right
+                =check_box_tag :check1
+                =label_tag :check1, "価格未設定にする"
+            .LeftContents__FourthContent__MiddleBox__Amount
+              .LeftContents__FourthContent__MiddleBox__Amount__Left
+                %p 数量
+              .LeftContents__FourthContent__MiddleBox__Amount__Right
+                =check_box_tag :check1
+                =label_tag :check1, "同じ商品を複数出品する"
+            .LeftContents__FourthContent__MiddleBox__Personal
+              .LeftContents__FourthContent__MiddleBox__Personal__Left
+                %p 専用出品
+              .LeftContents__FourthContent__MiddleBox__Personal__Right
+                取引相手を選択する
+
+
+          .LeftContents__FourthContent__Bottom
+            %p その他のオプションガイド
+
+
+      .RightContents
+        .RightContents__FirstContent
+          .RightContents__FirstContent__Left
+            %p 商品名(必須)
+          .RightContents__FirstContent__Right
+            商品名#{f.text_field :product_name,placeholder: "30文字以内で入力"}
+        .RightContents__SecondContent
+          .RightContents__SecondContent__Left
+            %p 商品説明(必須)
+          .RightContents__SecondContent__Right
+            商品説明#{f.text_area :description,placeholder: "2048文字以内で入力",class: "RightContents__SecondContent__Right__input"}
+
+
+        .RightContents__ThirdContent
+
+          .RightContents__ThirdContent__Status
+            .RightContents__ThirdContent__Category__Left
+              %p カテゴリ(必須)
+            = f.collection_select :category_id, Category.all, :id, :name, { include_blank: "---"}, id: "category_form",class: "RightContents__ThirdContent__Category__Right"
+
+          .RightContents__ThirdContent__Status
+            .RightContents__ThirdContent__Category__Left
+              %p ブランド
+            
+            = f.collection_select :brand_id, Brand.all, :id, :name, { include_blank: "---"}, id: "category_form",class: "RightContents__ThirdContent__Category__Right"
+
+
+          .RightContents__ThirdContent__Status
+            .RightContents__ThirdContent__Category__Left
+              %p サイズ
+            = f.select :size, Product.sizes.keys,{prompt:"サイズを選択しない"},  id: "select_status",class: "RightContents__ThirdContent__Category__Right"
+
+
+
+          .RightContents__ThirdContent__Status
+            .RightContents__ThirdContent__Status__Left
+              %p 状態(必須)
+            = f.select :product_status, Product.product_statuses.keys,{prompt:"---"},  id: "select_status",class: "RightContents__ThirdContent__Status__Right"
+
+
+          .RightContents__ThirdContent__ShippingFee
+            .RightContents__ThirdContent__ShippingFee__Left
+              %p 配送料(必須)
+            = f.select :shipping_fee, Product.shipping_fees.keys,{prompt:"---"},  id: "select_status",class: "RightContents__ThirdContent__ShippingFee__Right"
+
+
+          .RightContents__ThirdContent__ShippingType
+            .RightContents__ThirdContent__ShippingType__Left
+              %p 配送方法(必須)
+            = f.select :shipping_type, Product.shipping_types.keys,{prompt:"---"},  id: "select_status",class: "RightContents__ThirdContent__ShippingType__Right"
+
+
+          .RightContents__ThirdContent__ListedArea
+            .RightContents__ThirdContent__ListedArea__Left
+              %p 出品地域(必須)
+            = f.collection_select :prefecture, Prefecture.all, :id, :name, { include_blank: "---" }, id: "category_form",class: "RightContents__ThirdContent__ListedArea__Right"
+            -# =Prefecture.find_by(id:@product.prefecture).name  
+
+          .RightContents__ThirdContent__ShippingDay
+            .RightContents__ThirdContent__ShippingDay__Left
+              %p 発送日の目安(必須)
+            = f.select :shipping_day, Product.shipping_days.keys,{prompt:"---"}, id: "select_status",class:"RightContents__ThirdContent__ShippingDay__Right"
+
+
+            .RightContents__ThirdContent__ShippingDay__answer
+
+    .Bottom
+      %input.submit{type:"submit", id:"button", value:"確認"}
+
+      
+  = render "home/under_field"

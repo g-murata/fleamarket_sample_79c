@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    
   end
 
   def destroy
@@ -33,9 +34,16 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    # binding.pry
+    # @products = ProductImage.where(product_id:params[:id])              #投稿に紐づく画像を取得する
   end
 
   def update
+    if @product.update(product_params) 
+      redirect_to product_path(params[:id]), notice: "更新が完了しました"
+    else
+      render :edit
+    end  
   end
 
 
@@ -55,7 +63,7 @@ class ProductsController < ApplicationController
       :shipping_type,     #配送方法
       :category_id,       #カテゴリ
       :deal_closed_date,  #取引成立日時
-      product_images_attributes: [:image]   #画像複数枚添付用     
+      product_images_attributes: [:image,:_destroy, :id]   #画像複数枚添付用     （IDはなんだ？）
     )
     .merge(
       seller_id: current_user.id, #ユーザID：ログイン中のユーザID
