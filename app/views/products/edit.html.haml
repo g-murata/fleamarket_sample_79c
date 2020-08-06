@@ -24,6 +24,7 @@
               %label            
                 .LeftContents__SecondContent__Left__img
                   = image_tag src="icon_camera.gif",id: "img1"
+                  -# プレビューボタンにチェックボックス入れる　→　画像削除　➡️　新規で登録する　（JSで実装する）
                   %input{id: "product_images_attributes_1_image", :name => "product[product_images_attributes][1][image]", type: "file"}/
 
             %li.LeftContents__SecondContent__Center
@@ -116,7 +117,7 @@
             .Main__right__ThirdContent__Brand__Left
               %p ブランド（任意）
             .Main__right__ThirdContent__Brand__Right
-              = f.collection_select :brand_id, Brand.all, :id, :name, { include_blank: "---", selected:"" }, id: "category_form", class: "select_line"
+              = f.collection_select :brand_id, Brand.all, :id, :name, { include_blank: "---"}, id: "category_form", class: "select_line"
 
           .Main__right__ThirdContent__Size
             .Main__right__ThirdContent__Size__Left
@@ -146,7 +147,7 @@
             .Main__right__ThirdContent__ListedArea__Left
               %p 出品地域
             .Main__right__ThirdContent__ListedArea__Right
-              = f.collection_select :prefecture, Prefecture.all, :id, :name, { include_blank: "---", selected:"" }, id: "category_form", class: "select_line"
+              = f.collection_select :prefecture, Prefecture.all, :id, :name, { include_blank: "---"}, id: "category_form", class: "select_line"
             
           .Main__right__ThirdContent__ShippingDay
             .Main__right__ThirdContent__ShippingDay__Left
