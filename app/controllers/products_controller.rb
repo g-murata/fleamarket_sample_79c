@@ -13,6 +13,10 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @images = @product.product_images
+    if @product.brand_id != nil
+      @brand = Brand.find(@product.brand_id)
+    end
   end
 
   def destroy
@@ -40,7 +44,7 @@ class ProductsController < ApplicationController
       :price,             #価格
       :brand_id,          #ブランド名
       :product_status,    #商品の状態
-      :prefecture,        #都道府県
+      :prefecture_id,        #都道府県
       :size,              #サイズ
       :shipping_fee,      #配送料 
       :shipping_day,      #発送までの日数
