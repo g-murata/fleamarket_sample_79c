@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
-
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :prefecture
   belongs_to :category, optional: true
   belongs_to :brand, optional: true
   belongs_to :seller, class_name: "User"
@@ -19,7 +20,7 @@ class Product < ApplicationRecord
   validates :price, presence: { message: "を入力してください"}
   validates :price, numericality: { greater_than:  299, less_than: 50001 } 
   validates :product_status,  presence: { message: "を入力してください"}
-  validates :prefecture,  presence: { message: "を入力してください"}
+  validates :prefecture_id,  presence: { message: "を入力してください"}
   validates :shipping_day,  presence: { message: "を入力してください"}
   validates :shipping_type,  presence: { message: "を入力してください"}
   validates :shipping_fee,  presence: { message: "を入力してください"}

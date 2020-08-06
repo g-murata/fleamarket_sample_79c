@@ -66,7 +66,7 @@
 
       .Main__left__shuppinchiiki
         %p 出品地域
-        = f.collection_select :prefecture, Prefecture.all, :id, :name, { include_blank: "---", selected:"" }, id: "category_form"
+        = f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "---", selected:"" }, id: "category_form"
         
 
       .Main__left__hassoubinomeyasu
