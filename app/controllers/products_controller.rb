@@ -13,9 +13,6 @@ class ProductsController < ApplicationController
     @category_parent_array = Category.where(ancestry: nil)
   end
 
-  def show
-  end
-
   def destroy
     if @product.destroy 
       redirect_to root_path, notice: "削除が完了しました"
@@ -23,7 +20,6 @@ class ProductsController < ApplicationController
       redirect_to product_path(params[:id]), notice: "権限がありません"
     end
   end
-
 
   def create
     @category_parent_array = Category.where(ancestry: nil)

@@ -75,6 +75,7 @@
 }
 
 @mixin RightBox {
+  display:flex;
   margin: 10px 0 20px 0;
   width: 110px;
   font-size: 10px;
@@ -86,7 +87,7 @@
 @mixin RightLine {
   display: flex;
   width: 480px;
-  margin: 20px 0 10px 0;
+  margin: 0 0 10px 0;
   padding-bottom: 10px;
   border-top: 1px solid #ececec;
   border-bottom: 1px solid #ececec;
@@ -103,8 +104,6 @@
 }
 
 @mixin RightThird {
-  // margin-top: 40px;
-  font-size: 14px;
   padding-right: 10px;
   text-align: center;
 }
@@ -122,10 +121,14 @@
   background: linear-gradient(to bottom, #ffffff 0%,#ececec 100%);
   border-radius: 5px;
   color: #646166;
-  font-size: 14px;
   padding: 5px 10px;
   margin-top: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+}
+
+@mixin SelectBox {
+  background: linear-gradient(to bottom, #ffffff 0%, #ececec 100%);
+  border:none;
 }
 
 // ここからページコンテンツ
@@ -351,7 +354,7 @@
       }
     }
   }
-  .RightContents {
+  .Main__right {
     width: 50vw;
     &__FirstContent{
       @include RightLine;
@@ -385,16 +388,74 @@
       }
     }
     &__ThirdContent {
+      padding-top: 15px;
+      padding-bottom: 20px;
       &__Category {
         border-top: 1px solid #ececec;
+        width: 480px;
+        border-bottom: 1px solid #ececec;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        &__Left {
+          margin-top: 5px;
+          width: 110px;
+          font-size: 10px;
+          font-weight: bold;
+          color: #b5b5b5;
+          float: left;
+        }
+        select {
+          @include RightThird ;
+          display: inline-block;
+          text-decoration: none;
+          border: 1px solid #ececec;
+          background: linear-gradient(to bottom, #ffffff 0%,#ececec 100%);
+          border-radius: 5px;
+          color: #646166;
+          padding: 5px 10px;
+        }
+        .second_line {
+          margin-left: 110px;
+          width: 190px;
+        }
+        .select_field {
+          margin-left: 110px;
+          width: 190px;
+          padding-right: 10px;
+          text-align: center;
+          display: inline-block;
+          text-decoration: none;
+          border: 1px solid #ececec;
+          background: linear-gradient(to bottom, #ffffff 0%, #ececec 100%);
+          border-radius: 5px;
+          color: #646166;
+          padding: 5px 10px;
+        }
+      }
+      &__Brand {
         @include RightBorder;
         &__Left {
-          margin: 10px 0;
           @include RightBox;
         }
         &__Right {
           @include RightThird ;
           @include SubmitBox;
+          .select_line {
+            @include SelectBox;
+          }
+        }
+      }
+      &__Size {
+        @include RightBorder;
+        &__Left {
+          @include RightBox;
+        }
+        &__Right {
+          @include RightThird ;
+          @include SubmitBox;
+          .select_line {
+            @include SelectBox;
+          }
         }
       }
       &__Status {
@@ -405,6 +466,9 @@
         &__Right {
           @include RightThird ;
           @include SubmitBox;
+          .select_line {
+            @include SelectBox;
+          }
         }
       }
       &__ShippingFee {
@@ -415,6 +479,9 @@
         &__Right {
           @include RightThird ;
           @include SubmitBox;
+          .select_line {
+            @include SelectBox;
+          }
         }
       }
       &__ShippingType {
@@ -425,6 +492,9 @@
         &__Right {
           @include RightThird ;
           @include SubmitBox;
+          .select_line {
+            @include SelectBox;
+          }
         }
       }
       &__ListedArea {
@@ -435,6 +505,9 @@
         &__Right {
           @include RightThird ;
           @include SubmitBox;
+          .select_line {
+            @include SelectBox;
+          }
         }
       }
       &__ShippingDay {
@@ -445,6 +518,9 @@
         &__Right {
           @include RightThird ;
           @include SubmitBox;
+          .select_line {
+            @include SelectBox;
+          }
         }
       }
     }
