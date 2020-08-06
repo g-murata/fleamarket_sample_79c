@@ -10,10 +10,10 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.product_images.build
+    @category_parent_array = Category.where(ancestry: nil)
   end
 
   def show
-    @category_parent_array = Category.where(ancestry: nil)
     @product = Product.find(params[:id])
     @category_grandchild = @product.category
     @category_child = @category_grandchild.parent
@@ -46,6 +46,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @category_parent_array = Category.where(ancestry: nil)
     # binding.pry
     # @products = ProductImage.where(product_id:params[:id])              #投稿に紐づく画像を取得する
   end
