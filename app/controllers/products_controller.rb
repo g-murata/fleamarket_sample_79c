@@ -1,5 +1,8 @@
 class ProductsController < ApplicationController
-  
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_currect_user, only: [:edit, :update, :destroy]
+  before_action :Login_required, only: [:new]
+
   def index
     @products = Product.includes(:product_images).order('created_at DESC')
   end  
@@ -9,6 +12,18 @@ class ProductsController < ApplicationController
     @product.product_images.build
     @category_parent_array = Category.where(ancestry: nil)
   end
+
+  def show
+  end
+
+  def destroy
+    if @product.destroy 
+      redirect_to root_path, notice: "削除が完了しました"
+    else
+      redirect_to product_path(params[:id]), notice: "権限がありません"
+    end
+  end
+
 
   def create
     @category_parent_array = Category.where(ancestry: nil)
@@ -58,4 +73,21 @@ class ProductsController < ApplicationController
     )  
   end  
 
+  def set_product
+    @product = Product.find(params[:id])
+  end  
+
+  def ensure_currect_user
+    if current_user.id != @product.seller_id
+      flash[:alert] = "権限がありません"
+      redirect_to product_path(params[:id])
+    end
+  end
+
+  def Login_required
+    unless user_signed_in?
+      flash[:alert] = "ログインが必要です"
+      redirect_to root_path
+    end
+  end
 end

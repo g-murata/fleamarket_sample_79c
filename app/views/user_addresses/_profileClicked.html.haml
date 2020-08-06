@@ -1,4 +1,6 @@
 .profile-clicked
+  -# .profile-clicked__errors
+  -#   = render "devise/shared/error_messages", resource: current_user
   .profile-clicked__wrapper
     .profile-clicked__wrapper__contents
       .profile-clicked__wrapper__contents__content
@@ -86,35 +88,39 @@
                   %a.action2__esc ×
             %ul.profile-clicked__wrapper__contents__content__details__contents__card
               -if @card
-                .form-title
-                  クレジットカード情報
+                クレジットカード情報
                 .form-content
                   %br
-                  .form-content__card-number
-                    %p カード番号
-                  .form-content__number  
-                    = "**** **** **** " + @default_card_information.last4
+                  = "**** **** **** " + @default_card_information.last4
                   %br
-                  .form-content__expiration-date
-                    %p 有効期限
-                  .form-content__date
-                    - exp_month = @default_card_information.exp_month.to_s
-                    - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-                    = exp_month + " / " + exp_year
-                    = form_tag(credit_card_path(current_user.id), method: :delete, id: 'charge-form',  name: "inputForm") do
-                      %input{ type: "hidden", name: "card_id", value: "" }
-                      %button.delete-btn カードを削除
-                .actions2
-                  %a.action2__esc ×
-
+                  - exp_month = @default_card_information.exp_month.to_s
+                  - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+                  = exp_month + " / " + exp_year
+                  = form_tag(credit_card_path(current_user.id), method: :delete, id: 'charge-form',  name: "inputForm") do
+                    %input{ type: "hidden", name: "card_id", value: "" }
+                    %button.delete-btn 削除する
               -else
                 = form_tag(pay_credit_cards_path, method: :post, id: 'charge-form',  name: "inputForm") do
-                  %label.title カード番号
+                  %label カード番号
                   .require 必須
                   = text_field_tag "number", "", class: "number", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
-                  = image_tag src="card.png"
+                  %ul.signup-card-list
+                    %li
+                      = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/visa.svg?238737266",width:"49px",height:"20px"
+                    %li
+                      = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?238737266",width:"34px",height:"20px"
+                    %li
+                      = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/saison-card.svg?238737266",width:"30px",height:"20px"
+                    %li
+                      = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?238737266",width:"32px",height:"20px"
+                    %li
+                      = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/american_express.svg?238737266",width:"21px",height:"20px"
+                    %li
+                      = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg?238737266",width:"32px",height:"20px"
+                    %li
+                      = image_tag "https://www-mercari-jp.akamaized.net/assets/img/card/discover.svg?238737266",width:"32px",height:"20px"
                   %br
-                  %label.title 有効期限
+                  %label 有効期限
                   .require 必須
                   %select#exp_month{name: "exp_month", type: "text"}
                     %option{value: ""} --
@@ -147,12 +153,12 @@
                   %span 年
                   %br
                   %br
-                  %label.title セキュリティコード
+                  %label セキュリティコード
                   .require 必須
                   = text_field_tag "cvc", "", class: "cvc", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
                   %br
                   #card_token
                   %br
-                  = submit_tag "追加する", id: "token_submit", class: "put"
+                  = submit_tag "追加する", id: "token_submit"
                   .actions2
                     %a.action2__esc ×

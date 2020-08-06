@@ -1,0 +1,430 @@
+* {
+  box-sizing: border-box;
+}
+
+// 複数のプロパティを変数でまとめたものです。
+@mixin LeftSecondContents {
+  width: 116px;
+  height: 116px;
+  position: relative;
+  border: 1px solid #ffffff;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+@mixin LeftSecondContentsImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform : translate(-50%,-50%);
+  transform : translate(-50%,-50%);
+}
+
+@mixin LeftThirdContentsBox {
+  display:flex;
+  align-items: center;
+  width: 370px;
+  height: 63px;
+  background: #ffffff;
+}
+
+@mixin LeftThirdContentsSmallBox {
+  display:flex;
+  align-items: center;
+  width: 50%;
+  height: 63px;
+  background: #ffffff;
+  border: 1px solid #ececec;
+}
+@mixin One { 
+  padding-left: 12px;
+  padding-right: 14px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #646166; 
+}
+
+@mixin Two {
+  font-size: 12px;
+  color: #646166;
+  padding: 10px 10px 10px 15px;
+}
+
+@mixin Three {
+  font-size: 12px;
+  font-weight: bold;
+  color: #646166;
+}
+
+@mixin MiddleBox {
+  width: 82px;
+  font-size: 14px;
+  color: #646166;
+  margin-left: 25px;
+}
+
+@mixin MiddleboxRight {
+  text-align: left;
+  font-size: 14px;
+  color: #646166;
+}
+
+@mixin RightBox {
+  margin: 10px 0 20px 0;
+  width: 110px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #b5b5b5;
+  padding-top: 10px;
+}
+
+@mixin RightLine {
+  display: flex;
+  width: 480px;
+  margin: 20px 0 10px 0;
+  padding-bottom: 10px;
+  border-top: 1px solid #ececec;
+  border-bottom: 1px solid #ececec;
+}
+
+@mixin RightWritten {
+  border: none;
+  text-align: left;
+  width: 370px;
+  background: #ffffff;
+  font-size: 14px;
+  font-weight: normal;
+  padding-left: 14px;
+}
+
+@mixin RightThird {
+  // margin-top: 40px;
+  font-size: 14px;
+  padding-right: 10px;
+  text-align: center;
+}
+
+@mixin RightBorder {
+  display: flex;
+  width: 480px;
+  border-bottom: 1px solid #ececec;
+}
+
+@mixin SubmitBox {
+  display: inline-block;
+  text-decoration: none;
+  border: 1px solid #ececec;
+  background: linear-gradient(to bottom, #ffffff 0%,#ececec 100%);
+  border-radius: 5px;
+  color: #646166;
+  font-size: 14px;
+  padding: 5px 10px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+// ここからページコンテンツ
+.Wrapper {
+  width: 1060px!important;
+  margin: 0 auto;
+  padding: 30px 80px;
+  min-height: 90%;
+  color: #565656;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+  background-color: #f6f6f7;
+}
+
+.Top {
+  display: flex;
+  align-items: flex-end;
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #646166;
+    margin-right: 50px;
+  }
+  p {
+    // margin-top: 10px;
+    font-size: 14px;
+    color: #646166;
+    margin-bottom: 1px;
+  }
+}
+
+.WrapperContents {
+  margin-top: 30px;
+  display: flex;
+  .LeftContents {
+    width: 50vw;
+    &__FirstContent {
+      margin-bottom: 15px;
+      width: 370px;
+      &__img {
+        background: #ffffff url("trading.png")!important;
+        width: 370px;
+        height: 370px;
+        border: 1px solid #3CCACE;
+
+      }
+    }
+    &__SecondContent {
+      display: flex;
+      width: 370px;
+      &__Left {
+        @include LeftSecondContents;
+        margin-right: 15px;
+        img {
+          @include LeftSecondContentsImage;
+        }
+      }
+      &__Center {
+        @include LeftSecondContents;
+        margin-right: 15px;
+        img {
+          @include LeftSecondContentsImage;
+        }
+      }
+      &__Right {
+        @include LeftSecondContents;
+        img {
+          @include LeftSecondContentsImage;
+        }
+      }
+    }
+    &__ThirdContent {
+      width: 370px;
+      margin: 80px 0 50px 0;
+      &__Top{
+        @include LeftThirdContentsBox;
+        border: 1px solid #ececec;
+        &__Left {
+          display: table-cell;
+          align-items: center;
+          padding-left: 14px;
+          padding-right: 14px;
+          font-size: 14px;
+          font-weight: bold;
+          color: #646166;
+        }
+        &__Center {
+          font-size: 14px;
+          color: #646166;
+          padding-right: 10px;
+          input {
+            border: none;
+            text-align: right;
+            width: 220px;
+            height: 40px;
+            padding-right: 10px;
+          }
+        }
+        &__Right{
+          font-size: 14px;
+          font-weight: bold;
+          color: #646166;
+        }
+      }
+      &__Bottom {
+        @include LeftThirdContentsBox;
+        &__Left {
+          @include LeftThirdContentsSmallBox;
+          &__One {
+            @include One;
+          }
+          &__Two {
+            @include Two;
+          }
+          &__Three {
+            @include Three;
+          }
+        }
+        &__Right {
+          @include LeftThirdContentsSmallBox;
+          &__One {
+            @include One;
+          }
+          &__Two {
+            @include Two;
+          }
+          &__Three{
+            @include Three;
+          }
+        }
+      }
+    }
+    &__FourthContent {
+      width: 370px;
+      &__Top {
+        font-size: 14px;
+        padding-top: 20px 0 0;
+        font-weight: bold;
+        color: #b5b5b5;
+        margin-bottom: 25px;
+      }
+      &__MiddleBox {
+        
+        &__Price {
+          @include LeftThirdContentsBox;
+          border: 1px solid #ececec;
+          &__Left {
+            @include MiddleBox;
+          }
+          &__Right {
+            @include MiddleboxRight;
+          }
+        }
+        &__Amount {
+          @include LeftThirdContentsBox;
+          border: 1px solid #ececec;
+          &__Left {
+            @include MiddleBox;
+          }
+          &__Right {
+            @include MiddleboxRight;
+          }
+        }
+        &__Personal {
+          @include LeftThirdContentsBox;
+          border: 1px solid #ececec;
+          &__Left {
+            @include MiddleBox;
+          }
+          &__Right {
+            @include MiddleboxRight;
+            @include SubmitBox;
+          }
+        }
+      }
+      &__Bottom {
+        text-align: right;
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #36c2e0;
+        // text-decoration: none;
+      }
+    }
+  }
+  .RightContents {
+    width: 50vw;
+    &__FirstContent{
+      @include RightLine;
+      &__Left {
+        margin: 10px 0;
+        @include RightBox;
+      }
+      &__Right {
+        margin-top: 10px;
+        font-size: 14px;
+        input {
+          @include RightWritten;
+          height: 40px;
+        }
+      }
+    }
+    &__SecondContent {
+      display: flex;
+      &__Left {
+        @include RightBox;
+      }
+      &__Right {
+        margin-top: 10px;
+        margin-bottom: 12px;
+        font-size: 14px;
+        padding-right: 10px;
+        textarea {
+          @include RightWritten;
+          height: 300px;
+        }
+      }
+    }
+    &__ThirdContent {
+      &__Category {
+        border-top: 1px solid #ececec;
+        @include RightBorder;
+        &__Left {
+          margin: 10px 0;
+          @include RightBox;
+        }
+        &__Right {
+          @include RightThird ;
+          @include SubmitBox;
+        }
+      }
+      &__Status {
+        @include RightBorder;
+        &__Left {
+          @include RightBox;
+        }
+        &__Right {
+          @include RightThird ;
+          @include SubmitBox;
+        }
+      }
+      &__ShippingFee {
+        @include RightBorder;
+        &__Left {
+          @include RightBox;
+        }
+        &__Right {
+          @include RightThird ;
+          @include SubmitBox;
+        }
+      }
+      &__ShippingType {
+        @include RightBorder;
+        &__Left {
+          @include RightBox;
+        }
+        &__Right {
+          @include RightThird ;
+          @include SubmitBox;
+        }
+      }
+      &__ListedArea {
+        @include RightBorder;
+        &__Left {
+          @include RightBox;
+        }
+        &__Right {
+          @include RightThird ;
+          @include SubmitBox;
+        }
+      }
+      &__ShippingDay {
+        @include RightBorder;
+        &__Left {
+          @include RightBox;
+        }
+        &__Right {
+          @include RightThird ;
+          @include SubmitBox;
+        }
+      }
+    }
+  }
+}
+
+.Bottom {
+  margin-top: 20px;
+  text-align: center;
+  .submit {
+    display: inline-block;
+    height: 45px !important;
+    width: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #3CCACE;
+    border: 1px solid #3CCACE;
+    color: #ffffff!important;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none !important;
+    line-height: 45px;
+    appearance: none;
+    text-align: center;
+    cursor: pointer;
+  }
+}
