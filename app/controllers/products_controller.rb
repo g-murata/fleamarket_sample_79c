@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
     if @product.brand_id != nil
       @brand = Brand.find(@product.brand_id)
     end
+    @category_parent_array = Category.where(ancestry: nil)
   end
 
   def destroy
@@ -27,13 +28,28 @@ class ProductsController < ApplicationController
     end
   end
 
-
   def create
+    @category_parent_array = Category.where(ancestry: nil)
     @product = Product.new(product_params)    
     unless @product.save
       @product.product_images.build if @product.product_images.blank?   #画像が一枚も投稿されていない場合buildメソッドを実行
       render :new
     end
+  end
+
+  def show
+    @product = Product.find(params[:id])
+    @category_grandchild = @product.category
+    @category_child = @category_grandchild.parent
+    @category_parent = @category_child.parent
+  end
+
+  def get_category_children
+    @category_children = Category.find("#{params[:parent_id]}").children
+  end
+
+  def get_category_grandchildren
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
   private
@@ -76,6 +92,4 @@ class ProductsController < ApplicationController
       redirect_to root_path
     end
   end
-
-
 end
