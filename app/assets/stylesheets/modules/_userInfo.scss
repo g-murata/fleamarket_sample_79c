@@ -119,6 +119,9 @@
               background: linear-gradient(#ffffff, #ececec);
               font-weight: bold;
             }
+            a:visited{
+              color: #646166;
+            }
           }
           &__bottom{
             background-color: #ff59c3;
@@ -138,7 +141,10 @@
                 position: absolute;
                 right: 5px;
                 margin-top: 20px;
-            }
+                }
+                a:visited{
+                  color: white;
+                }
             
           }
         }
