@@ -91,6 +91,9 @@
       color: #fff;
       text-decoration: none;
     }
+    a:visited{
+      color: white;
+    }
   }
 
   //アカウントをお持ちの方
@@ -98,6 +101,16 @@
     @include Link_button(#36c2e0);
   }
 
+}
+.Login_which_one__sns-login{
+
+  a{
+    @include Link_button(#36c2e0);
+    text-decoration: none;
+  }
+  a:visited{
+    @include Link_button(#36c2e0);
+  }
 }
 
 
