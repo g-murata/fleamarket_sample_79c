@@ -433,12 +433,22 @@
       &__text{
         display: list-item;
         line-height: normal;
+        a {
+          color: #fff;
+          font-size: 12px;
+          text-decoration: none;
+        }
       }
     }
     &__logo{
       max-width: 160px;
       width: 100%;
       margin: 0 auto;
+      a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 14px;
+      }
     }
   }
 }

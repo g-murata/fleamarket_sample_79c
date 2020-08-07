@@ -143,7 +143,7 @@
             .Main__right__ThirdContent__ListedArea__Left
               %p 出品地域
             .Main__right__ThirdContent__ListedArea__Right
-              = f.collection_select :prefecture, Prefecture.all, :id, :name, { include_blank: "---", selected:"" }, id: "category_form", class: "select_line"
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "---", selected:"" }, id: "category_form", class: "select_line"
             
           .Main__right__ThirdContent__ShippingDay
             .Main__right__ThirdContent__ShippingDay__Left
