@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
-
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :prefecture
   belongs_to :category, optional: true
   belongs_to :brand, optional: true
   belongs_to :seller, class_name: "User"
