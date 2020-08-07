@@ -9,35 +9,86 @@
     .WrapperContents
 
       .LeftContents
-        = f.fields_for :product_images,@product.product_images.new do |image|
-          .LeftContents__FirstContent
-            %label          
-              .LeftContents__FirstContent__img
-                =image_tag @product.product_images.find_by(product_id: @product.id).image.url,id: "img0"
-                -# = image_tag src="trading.png",id: "img0" 
-                .image_group{"data-index": 0}
-                  = image.file_field :image,id:"product_images_attributes_0_image"            
-          %ul.LeftContents__SecondContent
-            -# -@product.product_images.count.times do |i|
-            -#   -i = i+1            
-            %li.LeftContents__SecondContent__Left
-              %label            
-                .LeftContents__SecondContent__Left__img
-                  = image_tag src="icon_camera.gif",id: "img1"
-                  -# プレビューボタンにチェックボックス入れる　→　画像削除　➡️　新規で登録する　（JSで実装する）
-                  %input{id: "product_images_attributes_1_image", :name => "product[product_images_attributes][1][image]", type: "file"}/
+        = form_for @product do |f|
 
-            %li.LeftContents__SecondContent__Center
-              %label                
-                .LeftContents__SecondContent__Center__img
-                  = image_tag src="icon_camera.gif",id: "img2"
-                  %input{id: "product_images_attributes_2_image", :name => "product[product_images_attributes][2][image]", type: "file"}/
+          #image-box
+            #previews
+              - if @product.persisted?
+                .LeftContents__FirstContent
+                  .LeftContents__FirstContent__img
+                    = image_tag @product.product_images.first.image.url, data: { index: 0 }                       
 
-            %li.LeftContents__SecondContent__Right
-              %label                            
-                .LeftContents__SecondContent__Right__img
-                  = image_tag src="icon_camera.gif",id: "img3"
-                  %input{id: "product_images_attributes_3_image", :name => "product[product_images_attributes][3][image]", type: "file"}/
+                .LeftContents__SecondContent
+                  - @product.product_images.each_with_index do |image, i|
+                    -unless i == 0
+                      .LeftContents__SecondContent__Center
+                        = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
+
+            = f.fields_for :product_images do |image|
+              .js-file_group{"data-index" => "#{image.index}"}
+                = image.file_field :image, class: 'js-file'
+                %br/
+                %span.js-remove 削除
+              - if @product.persisted?
+                = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+            - if @product.persisted?
+              .js-file_group{"data-index" => "#{@product.product_images.count}"}
+                = file_field_tag :image, name: "product[images_attributes][#{@product.product_images.count}][src]", class: 'js-file'
+                .js-remove 削除
+            
+      
+
+        -# = f.fields_for :product_images,@product.product_images.new do |image|
+        -#   .LeftContents__FirstContent
+        -#     %label          
+        -#       .LeftContents__FirstContent__img
+        -#         =image_tag @product.product_images.find_by(product_id: @product.id).image.url,id: "img0"
+        -#         -# = image_tag src="trading.png",id: "img0" 
+        -#         .image_group{"data-index": 0}
+        -#           = image.file_field :image,id:"product_images_attributes_0_image"            
+        -#   %ul.LeftContents__SecondContent
+        -#     -# -@product.product_images.count.times do |i|
+        -#     -#   -i = i+1            
+        -#     %li.LeftContents__SecondContent__Left
+        -#       %label            
+        -#         .LeftContents__SecondContent__Left__img
+        -#           = image_tag src="icon_camera.gif",id: "img1"
+        -#           -# プレビューボタンにチェックボックス入れる　→　画像削除　➡️　新規で登録する　（JSで実装する）
+        -#           %input{id: "product_images_attributes_1_image", :name => "product[product_images_attributes][1][image]", type: "file"}/
+        -#           - unless @product.product_images[1].nil?
+        -#             = image_tag @product.product_images[1].image.url
+        -#             = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+        -#           - unless @product.product_images[1].nil?
+        -#             .js-file_group{"data-index" => "#{@product.product_images.count}"}
+        -#               = file_field_tag :src, name: "product[images_attributes][#{@product.product_images.count}][src]", class: 'js-file'
+        -#               .js-remove 削除
+
+        -#     %li.LeftContents__SecondContent__Center
+        -#       %label                
+        -#         .LeftContents__SecondContent__Center__img
+        -#           = image_tag src="icon_camera.gif",id: "img2"
+        -#           %input{id: "product_images_attributes_2_image", :name => "product[product_images_attributes][2][image]", type: "file"}/
+        -#           - if @product.product_images[2].persisted?
+        -#             = image_tag @product.product_images[2].image.url
+        -#             = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+        -#           - if @product.product_images[2].persisted?
+        -#             .js-file_group{"data-index" => "#{@product.product_images.count}"}
+        -#               = file_field_tag :src, name: "product[images_attributes][#{@product.product_images.count}][src]", class: 'js-file'
+        -#               .js-remove 削除
+
+        -#     %li.LeftContents__SecondContent__Right
+        -#       %label                            
+        -#         .LeftContents__SecondContent__Right__img
+                  
+        -#           = image_tag src="icon_camera.gif",id: "img3"
+        -#           %input{id: "product_images_attributes_3_image", :name => "product[product_images_attributes][3][image]", type: "file"}/
+        -#           - if @product.product_images[3].persisted?
+        -#             = image_tag @product.product_images[3].image.url
+        -#             = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+        -#           - if @product.product_images[3].persisted?
+        -#             .js-file_group{"data-index" => "#{@product.product_images.count}"}
+        -#               = file_field_tag :src, name: "product[images_attributes][#{@product.product_images.count}][src]", class: 'js-file'
+        -#               .js-remove 削除
 
 
 
