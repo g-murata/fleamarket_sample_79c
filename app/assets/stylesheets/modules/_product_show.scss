@@ -31,7 +31,6 @@
 
 // パンくずリスト
 .breadcrumbs {
-  // width: 100%;
   font-size: 13px;
   padding: 0 60px;
   border-top: 1px solid #eee;
@@ -154,6 +153,25 @@
       }
     }
 
+    &__btn {
+      display: flex;
+      align-items: top;
+      margin-top: 30px;
+      a {
+        color: #fff;
+        text-decoration: none;
+        margin-right: 20px;
+      }
+    }
+
+    &__icon {
+      background-color: #3ccace;
+      width: 200px;
+      height: 38px;
+      line-height: 38px;
+      text-align: center;
+      border-radius: 20px;
+    }
 
     &__option {
       .Option {
@@ -166,7 +184,7 @@
         }
 
         &__like-btn {
-          @include Product_btn(#3ccace, 16px, 6px 10px, 10px, #ffb340, 40px);
+          @include Product_btn(#3ccace, 16px, 6px 10px, 30px, #ffb340, 40px);
         }
         &__report-btn {
           @include Product_btn(#333, 14px, 6px 10px, 10px, #333, 4px);

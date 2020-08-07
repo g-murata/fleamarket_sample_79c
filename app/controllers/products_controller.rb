@@ -10,14 +10,15 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.product_images.build
+    @category_parent_array = Category.where(ancestry: nil)
   end
 
   def show
     @images = @product.product_images
-    if @product.brand_id != nil
-      @brand = Brand.find(@product.brand_id)
-    end
     @category_parent_array = Category.where(ancestry: nil)
+    @category_grandchild = @product.category
+    @category_child = @category_grandchild.parent
+    @category_parent = @category_child.parent
   end
 
   def destroy
@@ -35,13 +36,6 @@ class ProductsController < ApplicationController
       @product.product_images.build if @product.product_images.blank?   #画像が一枚も投稿されていない場合buildメソッドを実行
       render :new
     end
-  end
-
-  def show
-    @product = Product.find(params[:id])
-    @category_grandchild = @product.category
-    @category_child = @category_grandchild.parent
-    @category_parent = @category_child.parent
   end
 
   def get_category_children

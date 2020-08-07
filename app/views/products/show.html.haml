@@ -1,24 +1,6 @@
 = render 'home/upper_filed'
-.breadcrumbs
-  %ul.Category
-    %li.Category__list
-      = link_to "Shoppies", "#", class: "Category__link"
-    %li.Category__list
-      = icon('fas', 'angle-right')
-    %li.Category__list
-      = link_to "ベビー・キッズ", "#", class: "Category__link"
-    %li.Category__list
-      = icon('fas', 'angle-right')
-    %li.Category__list
-      = link_to "ベビー服(男女兼用)~95cm", "#", class: "Category__link"
-    %li.Category__list
-      = icon('fas', 'angle-right')
-    %li.Category__list
-      = link_to "アウター", "#", class: "Category__link"
-    %li.Category__list
-      = icon('fas', 'angle-right')
-    %li.Category__list--bold
-      products2
+= render 'breadcrumbs'
+
 .product_show_wrapper
   .Product
     %h2.Product__name
@@ -46,22 +28,21 @@
         %tr
           %th
             カテゴリー
-          %td
-          - if [46, 74, 134, 142, 147, 150, 158].include?(@category_id)
+          - if [46, 74, 134, 142, 147, 150].include?(@product.category_id)
             %td
-              = link_to "#{@category_child.name}","#"
-              %br= link_to "#{@category_grandchild.name}","#" 
-          -else
+              = link_to "#{@category_child.name}", "#"
+              %br= link_to "#{@category_grandchild.name}", "#" 
+          - else
             %td
-              = link_to "#{@category_parent.name}","#"
-              %br= link_to "#{@category_child.name}","#"
-              = link_to "#{@category_grandchild.name}","#"
-            %br
+              = link_to "#{@category_parent.name}", "#"
+              %br= link_to "#{@category_child.name}", "#"
+              = link_to "#{@category_grandchild.name}", "#"
         %tr
           %th
             ブランド
           %td
-            = @brand.name
+            - if @product.brand_id.present?
+              = @product.brand.name
         %tr
           %th 
             商品のサイズ
@@ -81,21 +62,29 @@
           %th
             発送元の地域
           %td
-            = link_to "#{@product.prefecture.name}", "#"
+            = @product.prefecture.name
         %tr
           %th
             発送日の目安
           %td
             = @product.shipping_day
     .Product__btn
-      - if user_signed_in? && current_user.id == @product.seller_id && @product.buyer_id.blank?
-        = link_to "商品情報を編集する"
-        = link_to "商品を削除する", product_path(@product.id), method: :delete, data: {confirm: "削除しますか"}
+      - if user_signed_in? && current_user.id == @product.seller_id
+        = link_to "#" do
+          .Product__icon
+            %p 商品情報を編集する
+        = link_to product_path(@product), method: :delete, data: {confirm: "削除しますか"} do
+          .Product__icon
+            %p 商品を削除する
       - elsif user_signed_in? && current_user.id != @product.seller_id
-        = link_to "購入画面に進む"
+        = link_to product_buyers_path(@product) do
+          .Product__icon
+            %p 購入画面に進む
       - else
         %p ※ログインすると購入できます。
-        = link_to "ログインはこちらから", new_user_session_path
+        = link_to new_user_session_path do
+          .Product__icon
+            %p ログインはこちらから
     .Product__option
       %ul.Option
         %li.Option__like-btn
@@ -135,11 +124,22 @@
     .Related__more
       = link_to "ベビー・キッズをもっと見る", "#", class: "Related__more-link"
     .Related__products
-      = render "related"
+      .Related-product
+        = link_to "#", class: "Related-product__link" do
+          .Related-product__head
+            = image_tag "a003.png", class: "Related-product__head-img"
+          .Related-body
+            %p.Related-body__name product2
+            .Related-body__details
+              %ul
+                %li 1000円
+                %li 
+                  = icon('fas', 'star')
+                  0
+              %p (税込)
 
 = render 'home/under_field'
-= link_to "#" do
-  .exhibition-btn
-    %span.exhibition-btn__text 出品する
-    = link_to new_product_path do
-      =image_tag 'icon_camera.png', alt: '出品', height: '54px', width: '54px', class: '.exhibition-btn__icon'
+.exhibition-btn
+  %span.exhibition-btn__text 出品する
+  = link_to new_product_path do
+    =image_tag 'icon_camera.png', alt: '出品', height: '54px', width: '54px', class: '.exhibition-btn__icon'
