@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_currect_user, only: [:edit, :update, :destroy]
+  before_action :Login_required, only: [:new]
 
   def index
     @products = Product.includes(:product_images).order('created_at DESC')
@@ -7,14 +10,39 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.product_images.build
+    @category_parent_array = Category.where(ancestry: nil)
+  end
+
+  def destroy
+    if @product.destroy 
+      redirect_to root_path, notice: "削除が完了しました"
+    else
+      redirect_to product_path(params[:id]), notice: "権限がありません"
+    end
   end
 
   def create
+    @category_parent_array = Category.where(ancestry: nil)
     @product = Product.new(product_params)    
     unless @product.save
       @product.product_images.build if @product.product_images.blank?   #画像が一枚も投稿されていない場合buildメソッドを実行
       render :new
     end
+  end
+
+  def show
+    @product = Product.find(params[:id])
+    @category_grandchild = @product.category
+    @category_child = @category_grandchild.parent
+    @category_parent = @category_child.parent
+  end
+
+  def get_category_children
+    @category_children = Category.find("#{params[:parent_id]}").children
+  end
+
+  def get_category_grandchildren
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
   private
@@ -40,4 +68,21 @@ class ProductsController < ApplicationController
     )  
   end  
 
+  def set_product
+    @product = Product.find(params[:id])
+  end  
+
+  def ensure_currect_user
+    if current_user.id != @product.seller_id
+      flash[:alert] = "権限がありません"
+      redirect_to product_path(params[:id])
+    end
+  end
+
+  def Login_required
+    unless user_signed_in?
+      flash[:alert] = "ログインが必要です"
+      redirect_to root_path
+    end
+  end
 end

@@ -1,0 +1,111 @@
+.head
+  .head__contents
+    .head__contents__image
+      = icon('fas', 'shopping-cart', class: 'head__contents__image__icon')
+      %p.head__contents__image__txt
+        注文
+    .head__contents__inform
+      %p この商品を注文します。
+      %p 注文受領されると、この商品を購入できるようになります。
+    .head__contents__help
+      = link_to '#' do
+        = icon('fas', 'book-open', class: 'head__contents__help__icon')
+        取引ガイド
+
+.container
+  .container__contents
+    .container__contents__product
+      .container__contents__product__info
+        .container__contents__product__info__image
+          = image_tag "#{@product_image.image.url}", size: '116x116', class: 'buydetails-contet__image'
+        %p.container__contents__product__info__name
+          = @product.product_name
+        .container__contents__product__info__price-info
+          %p.container__contents__product__info__price-info__price
+            = "¥#{@product.price.to_s}"
+          %p.container__contents__product__info__price-info__info
+            送料込み(出品者が払う)
+
+    .container__contents__details
+      .container__contents__details__address
+        .container__contents__details__address__left
+          %p
+            配送先
+        .container__contents__details__address__right
+          %p 
+            配送先氏名
+          .addres-detail
+            = @user_address.address_last_name
+            = @user_address.address_first_name
+          %p 
+            郵便番号
+          .addres-detail
+            = @user_address.zip_code
+          %p
+            配送先住所
+          .addres-detail
+            = @user_address.prefecture.name
+            = @user_address.city
+            = @user_address.street
+            = @user_address.building_name
+
+          %p
+            配送先電話番号
+          .addres-detail
+            = @user_address.phone_number
+          %p.card-info
+            クレジットカード登録情報
+          .addres-detail
+            カードNo.
+            = "**** **** **** " + @default_card_information.last4
+            %p
+              有効期限
+              - exp_month = @default_card_information.exp_month.to_s
+              - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+              = exp_month + " / " + exp_year
+          = link_to '#' do
+            配送先を選ぶ
+          %br
+            ※送付先住所は、商品代金を支払うまでは、都道府県のみが出品者に伝わります。
+      .container__contents__details__info
+        = link_to '#' do
+          .container__contents__details__info__about-seller
+            .container__contents__details__info__about-seller__details
+              .container__contents__details__info__about-seller__details__image
+                = image_tag src="ログイン素材.png", size: "60x60"
+              .container__contents__details__info__about-seller__details__name
+                sellor-name
+                = icon('fas', 'chevron-right')
+        .container__contents__details__info__caution
+          ※お支払いの際、別途決済手数料がかかります。
+        .container__contents__details__info__about-payment
+          .container__contents__details__info__about-payment__contents
+            .container__contents__details__info__about-payment__contents__title
+              %p
+                決済手数料
+            .container__contents__details__info__about-payment__contents__content
+              .container__contents__details__info__about-payment__contents__content__left
+                %p
+                  コンビニ
+                %p
+                  ATM(郵便局/銀行)
+                %p
+                  クレジットカード(VISA / Master)
+                %p
+                  nanacoギフト支払い
+                %p
+                  全額所持金支払い
+              .container__contents__details__info__about-payment__contents__content__right
+                %p
+                  200円
+                %p
+                  200円
+                %p
+                  200円
+                %p
+                  200円
+                %p
+                  200円
+    .container__contents__btn
+      = form_tag(action: :pay, method: :post) do
+        %button.buy-button{type:"submit"} 購入する
