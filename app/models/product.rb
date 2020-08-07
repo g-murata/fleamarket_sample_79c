@@ -19,7 +19,7 @@ class Product < ApplicationRecord
   validates :price, presence: { message: "を入力してください"}
   validates :price, numericality: { greater_than:  299, less_than: 50001 } 
   validates :product_status,  presence: { message: "を入力してください"}
-  validates :prefecture,  presence: { message: "を入力してください"}
+  validates :prefecture_id,  presence: { message: "を入力してください"}
   validates :shipping_day,  presence: { message: "を入力してください"}
   validates :shipping_type,  presence: { message: "を入力してください"}
   validates :shipping_fee,  presence: { message: "を入力してください"}

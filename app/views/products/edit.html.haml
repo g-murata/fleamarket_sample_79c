@@ -162,11 +162,21 @@
           .Main__right__ThirdContent__Category
             .Main__right__ThirdContent__Category__Left
               %p カテゴリー(必須)
-            -# =f.collection_select :category_id, @category_parent_array, :id, :name,{ include_blank: "選択してください"}
-            =f.select :parent_name, @category_parent_array, {selected:@product.category.parent.parent.name}, { id: 'parent_category'}
-            =f.select :child_id, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @product.category.parent.id}),{}, {class: 'second_line',id: 'child_category'}
-            =f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @product.category.id}),{}, {class: 'select_field',id: 'grandchild_category'}
-
+            - if @category_id == 46 or @category_id == 74 or @category_id == 134 or @category_id == 142 or @category_id == 147 or @category_id == 150 or @category_id == 158
+              .append__category
+                .category
+                  =f.collection_select :category_id, @category_children_array, :id, :name, {selected:@child_array}, {class:"second_line"}
+                .category__grandchild#children_wrapper
+                  =f.collection_select :category_id, @category_grandchildren_array, :id, :name, {},{selected:@grandchild_array, id:"child__category",class:"select_field"}
+            - else
+              .append__category
+                .category
+                  =f.collection_select :category_id, @category_parent_array, :id, :name, {selected:@parent_array}, {class:"second_line"}
+                .category__child#children_wrapper
+                  =f.collection_select :category_id, @category_children_array, :id, :name, {},{selected:@child_array, id:"child__category", class:"second_line"}
+                .category__grandchild#grandchildren_wrapper
+                  =f.collection_select :category_id, @category_grandchildren_array, :id, :name, {selected:@grandchild_array}, {class:"select_field"}
+           
           .Main__right__ThirdContent__Brand
             .Main__right__ThirdContent__Brand__Left
               %p ブランド(任意)
