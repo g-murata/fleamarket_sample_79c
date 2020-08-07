@@ -10,9 +10,15 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.product_images.build
+    @category_parent_array = Category.where(ancestry: nil)
   end
 
   def show
+    @images = @product.product_images
+    @category_parent_array = Category.where(ancestry: nil)
+    @category_grandchild = @product.category
+    @category_child = @category_grandchild.parent
+    @category_parent = @category_child.parent
   end
 
   def destroy
@@ -23,13 +29,21 @@ class ProductsController < ApplicationController
     end
   end
 
-
   def create
-    @product = Product.new(product_params)
+    @category_parent_array = Category.where(ancestry: nil)
+    @product = Product.new(product_params)    
     unless @product.save
       @product.product_images.build if @product.product_images.blank?   #画像が一枚も投稿されていない場合buildメソッドを実行
       render :new
     end
+  end
+
+  def get_category_children
+    @category_children = Category.find("#{params[:parent_id]}").children
+  end
+
+  def get_category_grandchildren
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
   private
@@ -40,7 +54,7 @@ class ProductsController < ApplicationController
       :price,             #価格
       :brand_id,          #ブランド名
       :product_status,    #商品の状態
-      :prefecture,        #都道府県
+      :prefecture_id,        #都道府県
       :size,              #サイズ
       :shipping_fee,      #配送料 
       :shipping_day,      #発送までの日数
@@ -72,6 +86,4 @@ class ProductsController < ApplicationController
       redirect_to root_path
     end
   end
-
-
 end

@@ -1,0 +1,28 @@
+.breadcrumbs
+  %ul.Category
+    - if [46, 74, 134, 142, 147, 150].include?(@product.category_id)
+      %li.Category__list
+        = link_to "#{@category_child.name}", "#", class: "Category__link"
+      %li.Category__list
+        = icon('fas', 'angle-right')
+      %li.Category__list
+        = link_to "#{@category_grandchild.name}", "#", class: "Category__link"
+      %li.Category__list
+        = icon('fas', 'angle-right')
+      %li.Category__list--bold
+      = @product.product_name
+    - else
+      %li.Category__list
+        = link_to "#{@category_parent.name}", "#", class: "Category__link"
+      %li.Category__list
+        = icon('fas', 'angle-right')
+      %li.Category__list
+        = link_to "#{@category_child.name}", "#", class: "Category__link"
+      %li.Category__list
+        = icon('fas', 'angle-right')
+      %li.Category__list
+        = link_to "#{@category_grandchild.name}", "#", class: "Category__link"
+      %li.Category__list
+        = icon('fas', 'angle-right')
+      %li.Category__list--bold
+        = @product.product_name

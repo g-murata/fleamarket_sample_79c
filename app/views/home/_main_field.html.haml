@@ -82,13 +82,16 @@
     .main-field__pickup__lists
       %h3.main-field__pickup__lists__title
         %a(href="#") 新規投稿商品
-      %ul.main-field__pickup__lists__box
-        %li.main-field__pickup__lists__box__list
-          = image_tag 'a004.png', alt: '商品１', class: 'main-field__pickup__lists__box__list__pct'
-        %li.main-field__pickup__lists__box__list
-          = image_tag 'a001.png', alt: '商品２', class: 'main-field__pickup__lists__box__list__pct'
-        %li.main-field__pickup__lists__box__list
-          = image_tag 'a007.png', alt: '商品３', class: 'main-field__pickup__lists__box__list__pct'
+      .main-field__pickup__lists__box
+        - @products.each do |product|
+          %a.main-field__pickup__lists__box__list(href="#")
+            = image_tag product.product_images[0].image.url, size: "220x220"
+            .main-field__pickup__lists__box__dis
+              %h3  
+                = product.product_name
+              %p
+                = product.price
+                円（税込）
   .main-field__pickup
     %h2.main-field__pickup__title
       %br
@@ -96,19 +99,13 @@
     .main-field__pickup__lists
       %h3.main-field__pickup__lists__title
         %a(href="#") アーカイバ
-      %ul.main-field__pickup__lists__box
-        %li.main-field__pickup__lists__box__list
-          = image_tag 'a004.png', alt: '商品１', class: 'main-field__pickup__lists__box__list__pct'
-        %li.main-field__pickup__lists__box__list
-          = image_tag 'a001.png', alt: '商品２', class: 'main-field__pickup__lists__box__list__pct'
-        %li.main-field__pickup__lists__box__list
-          = image_tag 'a007.png', alt: '商品３', class: 'main-field__pickup__lists__box__list__pct'
-  %aside.main-field__app-area
-    .main-field__app-area__in
-      %h2.main-field__app-area__in__title だれでもかんたん、人生を変えるフリマアプリ
-      %p.main-field__app-area__in__text 今すぐ無料ダウンロード！
-      .main-field__app-area__in__btn
-        %a.main-field__app-area__in__btn__app(href="#")
-          = image_tag 'Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.png', alt: 'appストアボタン', width: '180px',  class: 'main-field__apparae__in__btn__goo'
-        %a.main-field__app-area__in__btn__goo(href="#")
-          = image_tag 'en_badge_web_generic.png', alt: 'googleボタン', width: '220px', class: 'main-field__apparae__in__btn__goo'
+      .main-field__pickup__lists__box
+        - @products.each do |product|
+          %a.main-field__pickup__lists__box__list(href="#")
+            = image_tag product.product_images[0].image.url, size: "220x220"
+            .main-field__pickup__lists__box__dis
+              %h3  
+                = product.product_name
+              %p
+                = product.price
+                円（税込）
