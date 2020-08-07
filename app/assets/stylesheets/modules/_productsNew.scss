@@ -399,12 +399,17 @@
         padding-top: 15px;
         padding-bottom: 15px;
         &__Left {
+          float: left;
           margin-top: 5px;
           width: 110px;
           font-size: 10px;
           font-weight: bold;
           color: #b5b5b5;
           float: left;
+        }
+        .append__category {
+          float:left;
+          margin-left: -110px;
         }
         select {
           @include RightThird ;

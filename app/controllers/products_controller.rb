@@ -46,27 +46,30 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @category_parent_array = Category.where(ancestry: nil)
-    # binding.pry
-    # @products = ProductImage.where(product_id:params[:id])              #投稿に紐づく画像を取得する
-    grandchild_category = @product.category
-    child_category = grandchild_category.parent
-
-    @category_parent_array = []
-    Category.where(ancestry: nil).each do |parent|
-      @category_parent_array << parent.name
+    @category_parent_array = Category.where(ancestry: nil).each do |parent|
     end
+    @category_id = @product.category_id
+    @category_parent = Category.find(@category_id).parent.parent
+    @category_child = Category.find(@category_id).parent
+    @category_grandchild = Category.find(@category_id)
 
-    @category_children_array = []
-    Category.where(ancestry: child_category.ancestry).each do |children|
-      @category_children_array << children
+    grandchild = @product.category
+    child = grandchild.parent
+    if @category_id == 46 or @category_id == 74 or @category_id == 134 or @category_id == 142 or @category_id == 147 or @category_id == 150 or @category_id == 158
+    else
+      @parent_array = []
+      @parent_array << @product.category.parent.parent.name
+      @parent_array << @product.category.parent.parent.id
     end
+    @category_children_array = Category.where(ancestry: child.ancestry)
+    @child_array = []
+    @child_array << child.name
+    @child_array << child.id
 
-    @category_grandchildren_array = []
-    Category.where(ancestry: grandchild_category.ancestry).each do |grandchildren|
-      @category_grandchildren_array << grandchildren
-    end
-  
+    @category_grandchildren_array = Category.where(ancestry: grandchild.ancestry)
+    @grandchild_array = []
+    @grandchild_array << grandchild.name
+    @grandchild_array << grandchild.id
   end
 
   def update
@@ -75,6 +78,17 @@ class ProductsController < ApplicationController
     else
       render :edit
     end  
+    @category_parent_array = Category.where(ancestry: nil).each do |parent|
+    end
+    @category_id = @product.category_id
+    @category_parent = Category.find(@category_id).parent.parent
+    @category_child = Category.find(@category_id).parent
+    @category_grandchild = Category.find(@category_id)
+  end
+
+  def update_done
+    @product = Product.where(user_id: current_user.id).last
+    @product_update = Product.order("updated_at DESC").first
   end
 
   private
@@ -85,7 +99,7 @@ class ProductsController < ApplicationController
       :price,             #価格
       :brand_id,          #ブランド名
       :product_status,    #商品の状態
-      :prefecture,        #都道府県
+      :prefecture_id,        #都道府県
       :size,              #サイズ
       :shipping_fee,      #配送料 
       :shipping_day,      #発送までの日数
