@@ -9,32 +9,31 @@
     .WrapperContents
 
       .LeftContents
-        = form_for @product do |f|
+        #image-box
+          #previews
+            - if @product.persisted?
+              .LeftContents__FirstContent
+                .LeftContents__FirstContent__img
+                  = image_tag @product.product_images.first.image.url, data: { index: 0 }                       
 
-          #image-box
-            #previews
-              - if @product.persisted?
-                .LeftContents__FirstContent
-                  .LeftContents__FirstContent__img
-                    = image_tag @product.product_images.first.image.url, data: { index: 0 }                       
-
-                .LeftContents__SecondContent
-                  - @product.product_images.each_with_index do |image, i|
-                    -unless i == 0
-                      .LeftContents__SecondContent__Center
-                        = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
+              .LeftContents__SecondContent
+                - @product.product_images.each_with_index do |image, i|
+                  -unless i == 0
+                    .LeftContents__SecondContent__Center
+                      = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
 
             = f.fields_for :product_images do |image|
+
               .js-file_group{"data-index" => "#{image.index}"}
                 = image.file_field :image, class: 'js-file'
                 %br/
                 %span.js-remove 削除
               - if @product.persisted?
                 = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
-            - if @product.persisted?
-              .js-file_group{"data-index" => "#{@product.product_images.count}"}
-                = file_field_tag :image, name: "product[product_images_attributes][#{@product.product_images.count}][image]", class: 'js-file'
-                .js-remove 削除
+            -# - if @product.persisted?
+            -#   .js-file_group{"data-index" => "#{@product.product_images.count}"}
+            -#     = file_field_tag :image, name: "product[product_images_attributes][#{@product.product_images.count}][image]", class: 'js-file'
+            -#     .js-remove 削除
             
       
 
