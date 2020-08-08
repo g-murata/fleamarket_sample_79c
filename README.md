@@ -1,4 +1,8 @@
 # Fleamarket_Sample_79C
+# ページ遷移
+
+<img src="https://github.com/TomozQ/fleamarket_sample_79c/blob/master/app/assets/images/Page_Movement.png?raw=true">
+
 # DB設計
 
 <img src="https://github.com/TomozQ/fleamarket_sample_79c/blob/master/app/assets/images/er.png?raw=true">
@@ -78,12 +82,12 @@
 |deal_closed_date|timestamp|
 
 ### Association
-- has_many :product_images, dependent: :destroy
+- has_many :product_images
 - belongs_to :category
 - belongs_to :brand
 - belongs_to :seller
 - belongs_to :buyer
-- belongs_to_active_hash:prefecture
+- belongs_to_active_hash :prefecture
 
 --------------------------------------------------------------
 
