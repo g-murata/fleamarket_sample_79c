@@ -42,6 +42,7 @@ class ProductsController < ApplicationController
     @category_parent_array = Category.where(ancestry: nil)
     @product = Product.new(product_params)    
     unless @product.save
+      @product.product_images.clear
       @product.product_images.build if @product.product_images.blank?   #画像が一枚も投稿されていない場合buildメソッドを実行
       render :new
     end
