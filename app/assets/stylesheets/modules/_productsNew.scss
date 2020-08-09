@@ -594,6 +594,13 @@
     display:none;
 }
 
+//Inputボックスの非表示（新規追加→削除時）
+#image-box{
+  input{
+  display:none;  
+}
+}
+
 
 
 .Bottom {
