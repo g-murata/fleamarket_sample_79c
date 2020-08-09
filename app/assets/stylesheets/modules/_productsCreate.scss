@@ -1,0 +1,119 @@
+// 画像
+@mixin Product_create_image($width, $height) {
+  width: $width;
+  height: $height;
+  object-fit: cover;
+  vertical-align: bottom;
+}
+
+// 完了表示
+.complete {
+  color: #fff;
+  background-color: #3ccace;
+  text-align: center;
+  width: 100%;
+}
+
+// メイン部分
+.product-create-wrapper {
+  background-color: #F8F8F8;
+  padding: 20px 40px 40px;
+  
+  // 商品一覧ボタン
+  .index-link {
+    text-decoration: none;
+    
+    &__btn {
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      width: 200px;
+      height: 40px;
+      line-height: 40px;
+      margin: 0 auto 20px;
+      text-align: center;
+      background-color: #3ccace;
+      border-radius: 20px;
+    }
+  }
+
+  // 商品詳細
+  .Create-product {
+    width: 700px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 24px 40px 40px;
+   
+    &__name {
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+
+    &__main {
+      padding: 16px 30px 0;
+    }
+
+    &__main-image {
+      @include Product_create_image(100%, 346px);
+    }
+
+
+    &__sub {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    &__sub-images {
+      margin-left: 10px;
+    }
+
+    &__sub-image {
+      @include Product_create_image(140px, 87px);
+    }
+
+
+    &__price-box {
+      text-align: center;
+      margin: 24px;
+    }
+    &__price {
+      font-size: 40px;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+
+    &__explanation {
+      font-size: 18px;
+      margin-bottom: 30px;
+      text-align: justify;
+      text-justify: inter-ideograph;
+    }
+
+
+    &__table {
+      table {
+        width: 100%;
+        margin-bottom: 20px;
+        tr {
+          font-size: 13px;
+          th {
+            width: 20%;
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #dedede;
+            background-color: #eee;
+          }
+          td {
+            width: 60%;
+            padding: 15px;
+            border: 1px solid #dedede;
+          }
+        }
+      }
+    }
+  }
+}

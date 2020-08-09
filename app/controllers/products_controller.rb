@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   before_action :Login_required, only: [:new]
 
   def index
-    @products = Product.includes(:product_images).order('created_at DESC')
+    @products = Product.includes(:product_images).order('created_at DESC').where.not(trading_status: 0)
   end  
 
   def new
@@ -36,6 +36,10 @@ class ProductsController < ApplicationController
       @product.product_images.build if @product.product_images.blank?   #画像が一枚も投稿されていない場合buildメソッドを実行
       render :new
     end
+    @images = @product.product_images
+    @category_grandchild = @product.category
+    @category_child = @category_grandchild.parent
+    @category_parent = @category_child.parent
   end
 
   def get_category_children
@@ -54,7 +58,7 @@ class ProductsController < ApplicationController
       :price,             #価格
       :brand_id,          #ブランド名
       :product_status,    #商品の状態
-      :prefecture_id,        #都道府県
+      :prefecture_id,     #都道府県
       :size,              #サイズ
       :shipping_fee,      #配送料 
       :shipping_day,      #発送までの日数
