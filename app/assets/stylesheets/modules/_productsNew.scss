@@ -584,6 +584,18 @@
   }
 }
 
+//Inputボックスの非表示
+.js-file_group{
+  display:none;
+}
+
+//チェックボックスの非表示
+.hidden-destroy{
+    display:none;
+}
+
+
+
 .Bottom {
   margin-top: 20px;
   text-align: center;
