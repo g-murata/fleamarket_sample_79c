@@ -1,6 +1,6 @@
 $(function(){
   
-  $('#product_images_attributes_0_image').change(function(e){
+  $("#image-box").on("change", "#product_images_attributes_0_image", function(e) {
     //ファイルオブジェクトを取得する
     var file = e.target.files[0];
     var reader = new FileReader();
@@ -22,7 +22,7 @@ $(function(){
   
   });
 
-  $('#product_images_attributes_1_image').change(function(e){
+  $("#image-box").on("change", "#product_images_attributes_1_image", function(e) {
     //ファイルオブジェクトを取得する
     var file = e.target.files[0];
     var reader = new FileReader();
@@ -43,7 +43,7 @@ $(function(){
     reader.readAsDataURL(file);
   });
 
-  $('#product_images_attributes_2_image').change(function(e){
+  $("#image-box").on("change", "#product_images_attributes_2_image", function(e) {
     //ファイルオブジェクトを取得する
     var file = e.target.files[0];
     var reader = new FileReader();
@@ -64,8 +64,9 @@ $(function(){
     reader.readAsDataURL(file);
   });
 
-  $('#product_images_attributes_3_image').change(function(e){
+  $("#image-box").on("change", "#product_images_attributes_3_image", function(e) {
     //ファイルオブジェクトを取得する
+    console.log(this);
     var file = e.target.files[0];
     var reader = new FileReader();
   

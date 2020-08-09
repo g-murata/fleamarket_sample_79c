@@ -87,7 +87,7 @@ $(function() {
       //Inputボックスを削除
       $('#product_images_attributes_1_image').remove();
       //Inputボックスを再作成
-      $('#image-box').append('<input name="product_images_attributes_1_image" id="product_images_attributes_1_image" type="file">');
+      $('#image-box').append('<input name="product[product_images_attributes][0][image]" id="product_images_attributes_0_image" type="file">');
       //削除ボタンを削除する      
       $('#Delete_btn_replacement_nil1').remove();
 
@@ -101,7 +101,7 @@ $(function() {
       //Inputボックスを削除
       $('#product_images_attributes_1_image').remove();
       //Inputボックスを再作成
-      $('#image-box').append('<input name="product_images_attributes_1_image" id="product_images_attributes_1_image" type="file">');
+      $('#image-box').append('<input name="product[product_images_attributes][1][image]" id="product_images_attributes_1_image" type="file">');
       //削除ボタンを削除する      
       $('#Delete_btn_replacement_nil1').remove();
 
@@ -114,7 +114,7 @@ $(function() {
       //Inputボックスを削除
       $('#product_images_attributes_2_image').remove();
       //Inputボックスを再作成
-      $('#image-box').append('<input name="product_images_attributes_2_image" id="product_images_attributes_2_image" type="file">');
+      $('#image-box').append('<input name="product[product_images_attributes][2][image]" id="product_images_attributes_2_image" type="file">');
       //削除ボタンを削除する      
       $('#Delete_btn_replacement_nil2').remove();
 
@@ -127,7 +127,7 @@ $(function() {
       //Inputボックスを削除
       $('#product_images_attributes_3_image').remove();
       //Inputボックスを再作成
-      $('#image-box').append('<input name="product_images_attributes_3_image" id="product_images_attributes_3_image" type="file">');
+      $('#image-box').append('<input name="product[product_images_attributes][3][image]" id="product_images_attributes_3_image" type="file">');
       //削除ボタンを削除する      
       $('#Delete_btn_replacement_nil3').remove();
 
