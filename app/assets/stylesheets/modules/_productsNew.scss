@@ -205,7 +205,7 @@
         display:none;
       }
 
-      &__Delete_btn{
+      #Delete_btn0{
         @include DeleteBtn(553px,10px,30px,34px);  
       }
     }
@@ -216,7 +216,17 @@
       input{
         display:none;
       }
-      
+
+      #Delete_btn1{
+        @include DeleteBtn(325px,0px,15px,24px);
+      }
+      #Delete_btn2{
+        @include DeleteBtn(450px,0px,15px,24px);
+      }
+      #Delete_btn3{
+        @include DeleteBtn(570px,0px,15px,24px);
+      }
+
       &__Left {
         @include LeftSecondContents;
         margin-right: 15px;
@@ -228,10 +238,6 @@
               @include FixImage
               }
         }
-
-        &__Delete_btn{
-          @include DeleteBtn(60px,0px,15px,24px);  
-        }        
         
       }
       &__Center {

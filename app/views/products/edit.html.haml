@@ -23,16 +23,17 @@
                   - if @product.product_images[i + 1].present?
                     .LeftContents__SecondContent__Center{id: "SecondContent#{i+1}"}
                       .LeftContents__SecondContent__Left__img
-                        .LeftContents__SecondContent__Left__Delete_btn{id: "Delete_btn#{i+1}"}
-                          x
                         = image_tag @product.product_images[i + 1].image.url, data: { index: i + 1 }, width: "100", height: '100',id: "img#{i + 1}"
+                    -# -binding.pry
+                    .LeftContents__SecondContent__Left__Delete_btn{id: "Delete_btn#{i+1}"}
+                      x
+                      
                         
                   - else
-                    %label            
-                      .LeftContents__SecondContent__Center{id: "SecondContent#{i+1}"}
-                        .LeftContents__SecondContent__Left__img
-                          = image_tag src="icon_camera.gif",id: "img#{i +1}"
-                          %input{id: "product_images_attributes_#{i + 1}_image", :name => "product[product_images_attributes][#{i + 1}][image]", type: "file"}/
+                    .LeftContents__SecondContent__Center{id: "SecondContent#{i+1}"}
+                      .LeftContents__SecondContent__Left__img
+                        = image_tag src="icon_camera.gif",id: "img#{i +1}"
+                    %input{id: "product_images_attributes_#{i + 1}_image", :name => "product[product_images_attributes][#{i + 1}][image]", type: "file"}/
 
             = f.fields_for :product_images do |image|
 
