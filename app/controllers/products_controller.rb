@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :ensure_currect_user, only: [:edit, :update, :destroy]
   before_action :Login_required, only: [:new]
+  before_action :category_map, only: [:edit, :update]
 
   def index
     @products = Product.includes(:product_images).order('created_at DESC')
@@ -55,38 +56,20 @@ class ProductsController < ApplicationController
     @category_parent = Category.find(@category_id).parent.parent
     @category_child = Category.find(@category_id).parent
     @category_grandchild = Category.find(@category_id)
-
-    grandchild = @product.category
-    child = grandchild.parent
-    if @category_id == 46 or @category_id == 74 or @category_id == 134 or @category_id == 142 or @category_id == 147 or @category_id == 150 or @category_id == 158
-    else
-      @parent_array = []
-      @parent_array << @product.category.parent.parent.name
-      @parent_array << @product.category.parent.parent.id
-    end
-    @category_children_array = Category.where(ancestry: child.ancestry)
-    @child_array = []
-    @child_array << child.name
-    @child_array << child.id
-
-    @category_grandchildren_array = Category.where(ancestry: grandchild.ancestry)
-    @grandchild_array = []
-    @grandchild_array << grandchild.name
-    @grandchild_array << grandchild.id
   end
 
   def update
+    @category_parent_array = Category.where(ancestry: nil).each do |parent|
+    end
     if @product.update(product_params) 
       redirect_to product_path(params[:id]), notice: "更新が完了しました"
     else
       render :edit
     end  
-    @category_parent_array = Category.where(ancestry: nil).each do |parent|
-    end
-    @category_id = @product.category_id
-    @category_parent = Category.find(@category_id).parent.parent
-    @category_child = Category.find(@category_id).parent
-    @category_grandchild = Category.find(@category_id)
+    # @category_id = @product.category_id
+    # @category_parent = Category.find(@category_id).parent.parent
+    # @category_child = Category.find(@category_id).parent
+    # @category_grandchild = Category.find(@category_id)
   end
 
   def get_category_children
@@ -137,5 +120,25 @@ class ProductsController < ApplicationController
       flash[:alert] = "ログインが必要です"
       redirect_to root_path
     end
+  end
+
+  def category_map
+    grandchild = @product.category
+    child = grandchild.parent
+    if @category_id == 46 or @category_id == 74 or @category_id == 134 or @category_id == 142 or @category_id == 147 or @category_id == 150 or @category_id == 158
+    else
+      @parent_array = []
+      @parent_array << @product.category.parent.parent.name
+      @parent_array << @product.category.parent.parent.id
+    end
+    @category_children_array = Category.where(ancestry: child.ancestry)
+    @child_array = []
+    @child_array << child.name
+    @child_array << child.id
+
+    @category_grandchildren_array = Category.where(ancestry: grandchild.ancestry)
+    @grandchild_array = []
+    @grandchild_array << grandchild.name
+    @grandchild_array << grandchild.id
   end
 end
