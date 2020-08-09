@@ -14,17 +14,22 @@
             - if @product.persisted?
               .LeftContents__FirstContent
                 .LeftContents__FirstContent__img
+                  .LeftContents__FirstContent__Delete_btn{id: "Delete_btn#{0}"}
+                    x                  
                   = image_tag @product.product_images.first.image.url, data: { index: 0 },id: "img0"                       
 
               .LeftContents__SecondContent
                 - 3.times do |i|
                   - if @product.product_images[i + 1].present?
-                    .LeftContents__SecondContent__Center
+                    .LeftContents__SecondContent__Center{id: "SecondContent#{i+1}"}
                       .LeftContents__SecondContent__Left__img
+                        .LeftContents__SecondContent__Left__Delete_btn{id: "Delete_btn#{i+1}"}
+                          x
                         = image_tag @product.product_images[i + 1].image.url, data: { index: i + 1 }, width: "100", height: '100',id: "img#{i + 1}"
+                        
                   - else
                     %label            
-                      .LeftContents__SecondContent__Center
+                      .LeftContents__SecondContent__Center{id: "SecondContent#{i+1}"}
                         .LeftContents__SecondContent__Left__img
                           = image_tag src="icon_camera.gif",id: "img#{i +1}"
                           %input{id: "product_images_attributes_#{i + 1}_image", :name => "product[product_images_attributes][#{i + 1}][image]", type: "file"}/
@@ -37,11 +42,6 @@
                 %span.js-remove 削除
               - if @product.persisted?
                 = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
-
-              -# - if @product.persisted?
-              -#   .js-file_group{"data-index" => "#{@product.product_images.count}"}
-              -#     = image.file_field :image, name: "product[images_attributes][#{@product.product_images.count}][image]", class: 'js-file'
-              -#     .js-remove 削除
 
 
 

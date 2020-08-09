@@ -133,6 +133,19 @@
   width: 178px;
 }
 
+//削除ボタン（第１引数：位置 第２引数：padding縦 第３引数：padding横  第４引数：文字の大きさ ）
+@mixin DeleteBtn($left,$height,$width,$font-size){
+  position: absolute;
+  z-index: 10;
+  left: $left;
+  border: 1px solid white;
+  padding: $height $width;
+  font-size: $font-size;
+  color: white;
+  background: #3CCACE;
+  Cursor:pointer;
+}
+
 // ここからページコンテンツ
 
 .Main_Container{
@@ -192,6 +205,9 @@
         display:none;
       }
 
+      &__Delete_btn{
+        @include DeleteBtn(553px,10px,30px,34px);  
+      }
     }
     &__SecondContent {
       display: flex;
@@ -213,6 +229,9 @@
               }
         }
 
+        &__Delete_btn{
+          @include DeleteBtn(60px,0px,15px,24px);  
+        }        
         
       }
       &__Center {
