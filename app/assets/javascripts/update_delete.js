@@ -4,7 +4,7 @@ $(function() {
   $(document).on("click", `#img0`, function(){
     $('#product_images_attributes_0_image').click();    
     $('#product_product_images_attributes_0__destroy').prop('checked', false);
-    $('.LeftContents__FirstContent').append('<div class="LeftContents__FirstContent__Delete_btn" id="Delete_btn0">x');
+    $('#Delete_btn0').fadeIn(2000);
   })
 
   $(document).on("click", `#SecondContent1`, function(){
@@ -55,6 +55,13 @@ $(function() {
 
 
   //***************『新規』画像の登録***************//      
+
+  $(document).on("click", `#FirstContent_nil0`, function(){
+    //画像添付ボタンを押下 
+    $('#product_images_attributes_0_image').click();    
+   // 新規画像登録時にバツボタンを追加
+   $('.LeftContents__FirstContent').append('<div class="LeftContents__FirstContent__Delete_btn" id="Delete_btn_replacement_nil0">x');
+  })  
 
   $(document).on("click", `#SecondContent_nil1`, function(){
     //画像添付ボタンを押下 
