@@ -96,7 +96,7 @@ class ProductsController < ApplicationController
       :shipping_type,     #配送方法
       :category_id,       #カテゴリ
       :deal_closed_date,  #取引成立日時
-      product_images_attributes: [:image,:_destroy, :id]   #画像複数枚添付用     （IDはなんだ？）
+      product_images_attributes: [:image,:_destroy, :id]   #画像複数枚添付用
     )
     .merge(
       seller_id: current_user.id, #ユーザID：ログイン中のユーザID
