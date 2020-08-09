@@ -66,10 +66,6 @@ class ProductsController < ApplicationController
     else
       render :edit
     end  
-    # @category_id = @product.category_id
-    # @category_parent = Category.find(@category_id).parent.parent
-    # @category_child = Category.find(@category_id).parent
-    # @category_grandchild = Category.find(@category_id)
   end
 
   def get_category_children
