@@ -1,7 +1,7 @@
 $(function() {
 
   //***************『既存』画像差し替え***************//      
-  $(document).on("click", `#img0`, function(){
+  $(document).on("click", `#FirstContent0`, function(){
     $('#product_images_attributes_0_image').click();    
     $('#product_product_images_attributes_0__destroy').prop('checked', false);
     $('#Delete_btn0').fadeIn(2000);
@@ -60,7 +60,7 @@ $(function() {
     //画像添付ボタンを押下 
     $('#product_images_attributes_0_image').click();    
    // 新規画像登録時にバツボタンを追加
-   $('.LeftContents__FirstContent').append('<div class="LeftContents__FirstContent__Delete_btn" id="Delete_btn_replacement_nil0">x');
+   $('#image-box').append('<div class="LeftContents__FirstContent__Delete_btn" id="Delete_btn_replacement_nil0">x');
   })  
 
   $(document).on("click", `#SecondContent_nil1`, function(){
@@ -90,13 +90,13 @@ $(function() {
     $(document).on("click", `#Delete_btn_replacement_nil0`, function(){
 
       //カメラアイコンに戻す
-      $('#SecondContent_nil1 img').attr('src', '/assets/icon_camera.gif');
+      $('#FirstContent_nil0 img').attr('src', '/assets/trading.png');
       //Inputボックスを削除
-      $('#product_images_attributes_1_image').remove();
+      $('#product_images_attributes_0_image').remove();
       //Inputボックスを再作成
       $('#image-box').append('<input name="product[product_images_attributes][0][image]" id="product_images_attributes_0_image" type="file">');
       //削除ボタンを削除する      
-      $('#Delete_btn_replacement_nil1').remove();
+      $('#Delete_btn_replacement_nil0').remove();
 
     })       
 

@@ -12,11 +12,11 @@
         #image-box
           #previews
             - if @product.persisted?
-              .LeftContents__FirstContent
+              .LeftContents__FirstContent{id:"FirstContent0"}
                 .LeftContents__FirstContent__img
                   = image_tag @product.product_images.first.image.url, data: { index: 0 },id: "img0"
-                .LeftContents__FirstContent__Delete_btn{id: "Delete_btn#{0}"}
-                  x
+              .LeftContents__FirstContent__Delete_btn{id: "Delete_btn#{0}"}
+                x
                                       
                                          
 

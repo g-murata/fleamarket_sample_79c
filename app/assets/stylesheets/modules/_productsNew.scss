@@ -207,17 +207,17 @@
       }
 
 
+    }
       //新規画像登録時のバツアイコン（1枚目）
       #Delete_btn0{
         @include DeleteBtn(225px,553px,10px,30px,34px);  
       }
 
       //既存画像差し替え時のバツアイコン（1枚目）
-      #Delete_btn_replacement0{
+      #Delete_btn_replacement_nil0{
         @include DeleteBtn(225px,553px,10px,30px,34px);  
-      }      
+      }    
 
-    }
     &__SecondContent {
       display: flex;
       width: 370px;
