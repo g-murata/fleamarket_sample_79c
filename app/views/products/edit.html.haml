@@ -14,9 +14,11 @@
             - if @product.persisted?
               .LeftContents__FirstContent
                 .LeftContents__FirstContent__img
-                  .LeftContents__FirstContent__Delete_btn{id: "Delete_btn#{0}"}
-                    x                  
-                  = image_tag @product.product_images.first.image.url, data: { index: 0 },id: "img0"                       
+                  = image_tag @product.product_images.first.image.url, data: { index: 0 },id: "img0"
+                .LeftContents__FirstContent__Delete_btn{id: "Delete_btn#{0}"}
+                  x
+                                      
+                                         
 
               .LeftContents__SecondContent
                 - 3.times do |i|
@@ -24,13 +26,12 @@
                     .LeftContents__SecondContent__Center{id: "SecondContent#{i+1}"}
                       .LeftContents__SecondContent__Left__img
                         = image_tag @product.product_images[i + 1].image.url, data: { index: i + 1 }, width: "100", height: '100',id: "img#{i + 1}"
-                    -# -binding.pry
                     .LeftContents__SecondContent__Left__Delete_btn{id: "Delete_btn#{i+1}"}
                       x
                       
                         
                   - else
-                    .LeftContents__SecondContent__Center{id: "SecondContent#{i+1}"}
+                    .LeftContents__SecondContent__Center{id: "SecondContent_nil#{i+1}"}
                       .LeftContents__SecondContent__Left__img
                         = image_tag src="icon_camera.gif",id: "img#{i +1}"
                     %input{id: "product_images_attributes_#{i + 1}_image", :name => "product[product_images_attributes][#{i + 1}][image]", type: "file"}/

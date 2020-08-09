@@ -133,10 +133,11 @@
   width: 178px;
 }
 
-//削除ボタン（第１引数：位置 第２引数：padding縦 第３引数：padding横  第４引数：文字の大きさ ）
-@mixin DeleteBtn($left,$height,$width,$font-size){
+//削除ボタン（第1引数：高さ 第2引数：位置 第3引数：padding縦 第4引数：padding横  第5引数：文字の大きさ ）
+@mixin DeleteBtn($top,$left,$height,$width,$font-size){
   position: absolute;
   z-index: 10;
+  top:$top;
   left: $left;
   border: 1px solid white;
   padding: $height $width;
@@ -205,9 +206,17 @@
         display:none;
       }
 
+
+      //新規画像登録時のバツアイコン（1枚目）
       #Delete_btn0{
-        @include DeleteBtn(553px,10px,30px,34px);  
+        @include DeleteBtn(225px,553px,10px,30px,34px);  
       }
+
+      //既存画像差し替え時のバツアイコン（1枚目）
+      #Delete_btn_replacement0{
+        @include DeleteBtn(225px,553px,10px,30px,34px);  
+      }      
+
     }
     &__SecondContent {
       display: flex;
@@ -217,15 +226,30 @@
         display:none;
       }
 
+      //新規画像登録時のバツアイコン（2枚目〜4枚目）
+      #Delete_btn_replacement_nil1{
+        @include DeleteBtn(auto,325px,0px,15px,24px);
+      }
+      #Delete_btn_replacement_nil2{
+        @include DeleteBtn(auto,450px,0px,15px,24px);
+      }
+      #Delete_btn_replacement_nil3{
+        @include DeleteBtn(auto,570px,0px,15px,24px);
+      }
+
+      //既存画像差し替え時のバツアイコン（2枚目〜4枚目）
       #Delete_btn1{
-        @include DeleteBtn(325px,0px,15px,24px);
+        @include DeleteBtn(auto,325px,0px,15px,24px);
       }
       #Delete_btn2{
-        @include DeleteBtn(450px,0px,15px,24px);
+        @include DeleteBtn(auto,450px,0px,15px,24px);
       }
       #Delete_btn3{
-        @include DeleteBtn(570px,0px,15px,24px);
+        @include DeleteBtn(auto,570px,0px,15px,24px);
       }
+
+
+
 
       &__Left {
         @include LeftSecondContents;
