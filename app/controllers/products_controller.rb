@@ -15,7 +15,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
     @images = @product.product_images
     @category_parent_array = Category.where(ancestry: nil)
     @category_grandchild = @product.category
