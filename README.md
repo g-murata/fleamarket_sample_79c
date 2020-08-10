@@ -5,7 +5,7 @@
 
 # DB設計
 
-<img src="https://github.com/TomozQ/fleamarket_sample_79c/blob/master/app/assets/images/er.png?raw=true">
+<img src="https://github.com/TomozQ/fleamarket_sample_79c/blob/master/app/assets/images/er_new.png?raw=true">
 
 ## usersテーブル
 |Column|Type|Options|
