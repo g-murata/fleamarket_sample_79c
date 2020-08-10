@@ -49,8 +49,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @category_parent_array = Category.where(ancestry: nil).each do |parent|
-    end
+    @category_parent_array = Category.where(ancestry: nil)
     @category_id = @product.category_id
     @category_parent = Category.find(@category_id).parent.parent
     @category_child = Category.find(@category_id).parent
@@ -58,8 +57,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @category_parent_array = Category.where(ancestry: nil).each do |parent|
-    end
+    @category_parent_array = Category.where(ancestry: nil)
     if @product.update(product_params) 
       redirect_to product_path(params[:id]), notice: "更新が完了しました"
     else
