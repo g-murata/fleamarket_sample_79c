@@ -46,6 +46,14 @@ class ProductsController < ApplicationController
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
+  def search
+    if params[:name].present?
+      @products = Product.where('title LIKE(?)', "%#{params[:keyword]}%").limit(20)
+    else
+      @products = Product.none
+    end
+  end
+
   private
   def product_params
     params.require(:product).permit(
@@ -86,4 +94,5 @@ class ProductsController < ApplicationController
       redirect_to root_path
     end
   end
+
 end
