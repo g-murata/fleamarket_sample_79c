@@ -30,9 +30,33 @@
         border-radius: 4px;
       }
       &__search-box{
-        display: flex;
-        &__btn__s{
-          background-color: #33ccee;
+        margin-left:auto;
+        width:100%;
+        box-sizing: border-box;
+        form{
+          display: flex;
+          .search-field{
+            width:100%;
+            padding-left:10px;
+          }
+          .search-btn{
+            background-color: #3CCACE;
+            width:36px;
+            height:36px;
+            padding:8px;
+            box-sizing: border-box;
+            position: relative;
+            i.fas.fa-search{
+              position: absolute;
+              width:36px;
+              height:36px;
+            }
+            i.fas.fa-search::before{
+              align-items: center;
+              width:36px;
+              height:36px;
+            }
+          }
         }
       }
     }

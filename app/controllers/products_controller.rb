@@ -79,11 +79,7 @@ class ProductsController < ApplicationController
   end
 
   def search
-    if params[:name].present?
-      @products = Product.where('title LIKE(?)', "%#{params[:keyword]}%").limit(20)
-    else
-      @products = Product.none
-    end
+      @products = Product.where('product_name LIKE(?)', "%#{params[:search]}%").limit(20)
   end
 
   private

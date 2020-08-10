@@ -8,11 +8,12 @@
           = image_tag 'logo.png', alt: 'トップロゴ', height: '40.55px', width: '160px', class: ''
       .upper-field__in__main__search-box
         = form_with url: search_products_path, method: :get, local: true  do |f|
-          = f.text_field :search, class: "seach-field", placeholder: 'キーワードを入力してください'
-          = f.submit :search
-        %span.upper-field__in__main__search-box__btn
-          %button.btn.btn-info{alt: "検索", value: "検索", type: "submit"}
-            = image_tag 'icon-search 1.png', alt: '検索', height: '32px', width: '32px', class: '.upper-field__in__main__search-box__btn__s'
+          = f.text_field :search, class: "seach-field", placeholder: 'キーワードを入力してください', size:"90px"
+          .search-btn
+            = f.submit "", {:id=>"fbtn"}
+            %label{for: "fbtn" }
+              %i.fas.fa-search
+
   .upper-field__navigate
     .upper-field__navigate__left-side
       %ul.upper-field__navigate__left-side__item
