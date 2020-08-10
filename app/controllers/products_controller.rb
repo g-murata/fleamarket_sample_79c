@@ -45,11 +45,12 @@ class ProductsController < ApplicationController
       @product.product_images.clear
       @product.product_images.build if @product.product_images.blank?   #画像が一枚も投稿されていない場合buildメソッドを実行
       render :new
+    else
+      @images = @product.product_images
+      @category_grandchild = @product.category
+      @category_child = @category_grandchild.parent
+      @category_parent = @category_child.parent
     end
-    @images = @product.product_images
-    @category_grandchild = @product.category
-    @category_child = @category_grandchild.parent
-    @category_parent = @category_child.parent
   end
 
   def edit
@@ -123,16 +124,15 @@ class ProductsController < ApplicationController
     grandchild = @product.category
     child = grandchild.parent
     if @category_id == 46 or @category_id == 74 or @category_id == 134 or @category_id == 142 or @category_id == 147 or @category_id == 150 or @category_id == 158
-    else
       @parent_array = []
       @parent_array << @product.category.parent.parent.name
       @parent_array << @product.category.parent.parent.id
+    else
+      @category_children_array = Category.where(ancestry: child.ancestry)
+      @child_array = []
+      @child_array << child.name
+      @child_array << child.id
     end
-    @category_children_array = Category.where(ancestry: child.ancestry)
-    @child_array = []
-    @child_array << child.name
-    @child_array << child.id
-
     @category_grandchildren_array = Category.where(ancestry: grandchild.ancestry)
     @grandchild_array = []
     @grandchild_array << grandchild.name
