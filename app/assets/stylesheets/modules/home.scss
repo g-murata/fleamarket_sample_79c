@@ -1,8 +1,6 @@
 * {
   box-sizing: border-box;
-  a:visited{
-   color: #0000ff;
-  }
+  text-decoration: none;
 }
 
 .wapper{
@@ -35,6 +33,15 @@
         display: flex;
         &__btn__s{
           background-color: #33ccee;
+        }
+        button.btn-info{
+          background-color: #33ccee;
+          border: none;
+          height: 40px;
+          width: 50px;
+          border-radius: 4px;
+          padding-top: 2px;
+          margin-left: 5px;
         }
       }
     }
@@ -185,6 +192,7 @@
       width: 70px;
       height: 4px;
       background-color: #3CCACE;
+      font-weight: bold;
       position: absolute;
       bottom: 0;
       left: 50%;
@@ -352,16 +360,30 @@
         font-size: 24px;
         text-decoration: none;
         color: #33ccee;
+        a{
+          color: #3CCACE;
+        }
       }
       &__box{
         width: 780px;
         margin: 26px auto;
         display: flex;
         justify-content: space-around;
-      }
-      &__box li{
-        width: 220px;
-        display: inline-block;
+        &__list{
+          width: 220px;
+          background-color: #fff;
+        }
+        &_list img{
+          text-align: center;
+        }
+          &__dis{
+            font-size: 16px;
+            line-height: 1.5;
+            padding: 16px;
+          }
+          a{
+            color: black;
+          }
       }
     }
   }
@@ -426,12 +448,22 @@
       &__text{
         display: list-item;
         line-height: normal;
+        a {
+          color: #fff;
+          font-size: 12px;
+          text-decoration: none;
+        }
       }
     }
     &__logo{
       max-width: 160px;
       width: 100%;
       margin: 0 auto;
+      a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 14px;
+      }
     }
   }
 }

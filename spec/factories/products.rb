@@ -5,7 +5,7 @@ FactoryBot.define do
     description                 {"これは商品です"}
     price                       {"2980"}
     product_status              {1}
-    prefecture                  {6}
+    prefecture_id               {6}
     size                        {0}
     shipping_day                {1}
     shipping_type               {1}

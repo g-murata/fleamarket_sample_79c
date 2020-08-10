@@ -7,7 +7,9 @@ class BuyersController < ApplicationController
     if @card.blank?
       #登録された情報がない場合にカード登録画面に移動
       redirect_to user_path(current_user.id), notice: "プロフィール編集でクレジットカードの登録を行ってください"
-      
+    elsif
+      @product.seller_id == current_user.id
+      redirect_to root_path, notice: "権限がありません"
     else
       Payjp.api_key = Rails.application.credentials.development[:PAYJP_PRIVATE_KEY]
       #保管した顧客IDでpayjpから情報取得

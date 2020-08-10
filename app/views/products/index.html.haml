@@ -1,4 +1,16 @@
-= link_to '出品', new_product_path
-%br/
-.contents
-  = render @products
+= render 'home/upper_filed'
+.product-index-wrapper
+  .Product-index
+    %h2.Product-index__title
+      商品一覧
+    .product-wrapper
+      - @products.each do |product|
+        .Product-index-one
+          = link_to product_path(product), class: "Product-index-one__link" do
+            .Product-index-one__items
+              = image_tag product.product_images[0].image.url, size: "220x220", class: "Product-index-one__img"
+              .Product-index-one__info
+                %h3
+                  = product.product_name
+                %p
+                  = "#{product.price}円（税込）"

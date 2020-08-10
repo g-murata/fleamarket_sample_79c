@@ -5,6 +5,9 @@
     %ul
       - @user_address.errors.full_messages.each do |message|
         %li= message
+
+.header
+  = render "upper_filed"
 .user-info
   .user-info__container
     .user-info__container__contents
@@ -32,3 +35,5 @@
               ショップ詳細
           .user-info__container__contents__content__right__bottom
             = link_to "ログアウト", destroy_user_session_path, method: :delete 
+.footer
+  = render "under_field"
