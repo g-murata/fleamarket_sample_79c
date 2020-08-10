@@ -16,7 +16,8 @@ Rails.application.routes.draw do
       post 'pay', to: 'credit_cards#pay'
     end
   end
-  resources :products, only: [:new, :create, :index, :show, :destroy] do
+
+  resources :products do
     collection do
       get 'get_category_children', defaults: { fomat: 'json'}
       get 'get_category_grandchildren', defaults: { fomat: 'json'}
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
       get 'detail_search'
       get 'update_done'
     end
+
     resources :buyers, only: [:index] do
       collection do
         get 'done', to: 'buyers#done'
