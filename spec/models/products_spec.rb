@@ -33,10 +33,10 @@ describe Product do
       expect(product.errors[:product_status]).to include("を入力してください")
     end
 
-    it "prefectureが空では出品不可" do
-      product = build(:product, prefecture: "")
+    it "prefecture_idが空では出品不可" do
+      product = build(:product, prefecture_id: "")
       product.valid?
-      expect(product.errors[:prefecture]).to include("を入力してください")
+      expect(product.errors[:prefecture_id]).to include("を入力してください")
     end
 
     it "sizeが空でも出品『可』" do

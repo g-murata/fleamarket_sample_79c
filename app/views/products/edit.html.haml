@@ -3,35 +3,47 @@
   .Wrapper
     = render 'layouts/error_messages', model: f.object
     .Top
-      %h2 出品
-      %p 商品情報を入力してください
+      %h2 編集
+      %p 商品情報を編集してください
+
     .WrapperContents
 
       .LeftContents
         #image-box
-          = f.fields_for :product_images do |image|
-            .LeftContents__FirstContent{id:"FirstContent_nil0"}
-              .LeftContents__FirstContent__img
-                = image_tag src="trading.png",id: "img0"
-                
-            .image_group{"data-index": 0}
-              = image.file_field :image,id:"product_images_attributes_0_image"            
-            %ul.LeftContents__SecondContent
+          #previews
+            - if @product.persisted?
+              .LeftContents__FirstContent{id:"FirstContent0"}
+                .LeftContents__FirstContent__img
+                  = image_tag @product.product_images.first.image.url, data: { index: 0 },id: "img0"
+              .LeftContents__FirstContent__Delete_btn{id: "Delete_btn#{0}"}
+                x
+                                      
+                                         
 
-              %li.LeftContents__SecondContent__Center{id:"SecondContent_nil1"}
-                .LeftContents__SecondContent__Center__img
-                  = image_tag src="icon_camera.gif",id: "img1"
-              %input{id: "product_images_attributes_1_image", :name => "product[product_images_attributes][1][image]", type: "file"}/
+              .LeftContents__SecondContent
+                - 3.times do |i|
+                  - if @product.product_images[i + 1].present?
+                    .LeftContents__SecondContent__Center{id: "SecondContent#{i+1}"}
+                      .LeftContents__SecondContent__Left__img
+                        = image_tag @product.product_images[i + 1].image.url, data: { index: i + 1 }, width: "100", height: '100',id: "img#{i + 1}"
+                    .LeftContents__SecondContent__Left__Delete_btn{id: "Delete_btn#{i+1}"}
+                      x
+                      
+                        
+                  - else
+                    .LeftContents__SecondContent__Center{id: "SecondContent_nil#{i+1}"}
+                      .LeftContents__SecondContent__Left__img
+                        = image_tag src="icon_camera.gif",id: "img#{i +1}"
+                    %input{id: "product_images_attributes_#{i + 1}_image", :name => "product[product_images_attributes][#{i + 1}][image]", type: "file"}/
 
-              %li.LeftContents__SecondContent__Center{id:"SecondContent_nil2"}
-                .LeftContents__SecondContent__Center__img
-                  = image_tag src="icon_camera.gif",id: "img2"
-              %input{id: "product_images_attributes_2_image", :name => "product[product_images_attributes][2][image]", type: "file"}/
+            = f.fields_for :product_images do |image|
 
-              %li.LeftContents__SecondContent__Center{id:"SecondContent_nil3"}
-                .LeftContents__SecondContent__Center__img
-                  = image_tag src="icon_camera.gif",id: "img3"
-              %input{id: "product_images_attributes_3_image", :name => "product[product_images_attributes][3][image]", type: "file"}/
+              .js-file_group{"data-index" => "#{image.index}"}
+                = image.file_field :image, class: 'js-file', id:"product_images_attributes_#{image.index}_image"
+                %br/
+                %span.js-remove 削除
+              - if @product.persisted?
+                = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
 
 
 
@@ -105,47 +117,60 @@
           .Main__right__ThirdContent__Category
             .Main__right__ThirdContent__Category__Left
               %p カテゴリー(必須)
-            =f.collection_select :category_id, @category_parent_array, :id, :name,{ include_blank: "選択してください"}
-
+            - if @category_id == 46 or @category_id == 74 or @category_id == 134 or @category_id == 142 or @category_id == 147 or @category_id == 150 or @category_id == 158
+              .append__category
+                .category
+                  =f.collection_select :category_id, @category_children_array, :id, :name, {selected:@child_array}, {class:"second_line"}
+                .category__grandchild#children_wrapper
+                  =f.collection_select :category_id, @category_grandchildren_array, :id, :name, {},{selected:@grandchild_array, id:"child__category",class:"select_field"}
+            - else
+              .append__category
+                .category
+                  =f.collection_select :category_id, @category_parent_array, :id, :name, {selected:@parent_array}, {class:"second_line"}
+                .category__child#children_wrapper
+                  =f.collection_select :category_id, @category_children_array, :id, :name, {},{selected:@child_array, id:"child__category", class:"second_line"}
+                .category__grandchild#grandchildren_wrapper
+                  =f.collection_select :category_id, @category_grandchildren_array, :id, :name, {selected:@grandchild_array}, {class:"select_field"}
+           
           .Main__right__ThirdContent__Brand
             .Main__right__ThirdContent__Brand__Left
-              %p ブランド（任意）
+              %p ブランド(任意)
             .Main__right__ThirdContent__Brand__Right
-              = f.collection_select :brand_id, Brand.all, :id, :name, { include_blank: "---", selected:"" }, id: "category_form", class: "select_line"
+              = f.collection_select :brand_id, Brand.all, :id, :name, { include_blank: "---"}, id: "category_form", class: "select_line"
 
           .Main__right__ThirdContent__Size
             .Main__right__ThirdContent__Size__Left
-              %p サイズ（任意）
+              %p サイズ(任意)
             .Main__right__ThirdContent__Size__Right
               = f.select :size, Product.sizes.keys,{prompt:"サイズを選択しない"},  id: "select_status", class: "select_line"
             
           .Main__right__ThirdContent__Status
             .Main__right__ThirdContent__Status__Left
-              %p 状態
+              %p 状態(必須)
             .Main__right__ThirdContent__Status__Right
               = f.select :product_status, Product.product_statuses.keys,{prompt:"---"},  id: "select_status", class: "select_line"
     
           .Main__right__ThirdContent__ShippingFee
             .Main__right__ThirdContent__ShippingFee__Left
-              %p 配送料
+              %p 配送料(必須)
             .Main__right__ThirdContent__ShippingFee__Right
               = f.select :shipping_fee, Product.shipping_fees.keys,{prompt:"---"},  id: "select_status", class: "select_line"
 
           .Main__right__ThirdContent__ShippingType
             .Main__right__ThirdContent__ShippingType__Left
-              %p 配送方法
+              %p 配送方法(必須)
             .Main__right__ThirdContent__ShippingType__Right
               = f.select :shipping_type, Product.shipping_types.keys,{prompt:"---"},  id: "select_status", class: "select_line"
  
           .Main__right__ThirdContent__ListedArea
             .Main__right__ThirdContent__ListedArea__Left
-              %p 出品地域
+              %p 出品地域(必須)
             .Main__right__ThirdContent__ListedArea__Right
-              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "---", selected:"" }, id: "category_form", class: "select_line"
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "---"}, id: "category_form", class: "select_line"
             
           .Main__right__ThirdContent__ShippingDay
             .Main__right__ThirdContent__ShippingDay__Left
-              %p 発送日の目安
+              %p 発送日の目安(必須)
             .Main__right__ThirdContent__ShippingDay__Right
               = f.select :shipping_day, Product.shipping_days.keys,{prompt:"---"}, id: "select_status", class: "select_line"
 
