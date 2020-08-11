@@ -84,7 +84,7 @@
         %a(href="#") 新規投稿商品
       .main-field__pickup__lists__box
         - @products.each do |product|
-          %a.main-field__pickup__lists__box__list(href="#")
+          = link_to product_path(product), class: "main-field__pickup__lists__box__list" do
             = image_tag product.product_images[0].image.url, size: "220x220"
             .main-field__pickup__lists__box__dis
               %h3  
@@ -101,7 +101,7 @@
         %a(href="#") アーカイバ
       .main-field__pickup__lists__box
         - @products.each do |product|
-          %a.main-field__pickup__lists__box__list(href="#")
+          = link_to product_path(product), class: "main-field__pickup__lists__box__list" do
             = image_tag product.product_images[0].image.url, size: "220x220"
             .main-field__pickup__lists__box__dis
               %h3  

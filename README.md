@@ -1,7 +1,11 @@
 # Fleamarket_Sample_79C
+# ページ遷移
+
+<img src="https://github.com/TomozQ/fleamarket_sample_79c/blob/master/app/assets/images/Page_Movement.png?raw=true">
+
 # DB設計
 
-<img src="https://github.com/TomozQ/fleamarket_sample_79c/blob/master/app/assets/images/er.png?raw=true">
+<img src="https://github.com/TomozQ/fleamarket_sample_79c/blob/master/app/assets/images/er_new.png?raw=true">
 
 ## usersテーブル
 |Column|Type|Options|
@@ -15,15 +19,12 @@
 |first_name_kana|string|null: false|
 |birth_date|date|null: false|
 |introduction|string|
+|image|string|
 
 ### Association
-- has_one :user_address, dependent: :destroy
-- has_one :credit_card, dependent: :destroy
-- has_many :comments, dependent: destroy
-- has_many :likes, dependent: destroy
-- has_many :user_evaluations
-- has_many :seller_products, foreign_key: "seller_id"
-- has_many :buyer_products, foreign_key: "buyer_id"
+- has_one :user_address
+- has_one :credit_card
+- has_many :products
 
 --------------------------------------------------------------
 
@@ -34,8 +35,8 @@
 |address_first_name|string|null: false|
 |address_last_name_kana|string|null: false|
 |address_first_name_kana|string|null: false|
-|zip_code|integer(7)|null: false|
-|prefecture_id(acitve_hash)|integer|null: false|
+|zip_code|integer|null: false|
+|prefecture_id|integer|null: false|
 |city|string|null: false|
 |street|string|null: false|
 |building_name|string|
@@ -44,32 +45,19 @@
 
 ### Association
 - belongs_to :user
+- belongs_to_active_hash:prefecture
 
 --------------------------------------------------------------
 
 ## credit_cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user|references|null: false, foreign_key: true|
-|customer_id|string|null: false|
 |card_id|string|null: false|
+|customer_id|string|null: false|
+|user_id|integer|null: false|
 
 ### Association
 - belongs_to :user
-
---------------------------------------------------------------
-
-## user_evaluationsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|review|text|null: false|
-|user|references|null: false, foreign_key: true|
-|product|references|null: false, foreign_key: true|
-|evaluation|references|null: false, foreign_key: true|
-
-### Association
-- belongs_to :user
-- belongs_to :product
 
 --------------------------------------------------------------
 
@@ -80,27 +68,26 @@
 |description|text|null: false|
 |price|integer|null: false|
 |brand|references|foreign_key: true|
-|product_status|references|null: false, foreign_key: true|
+|product_status|integer|null: false|
 |buyer_address|references|null: false, foreign_key: true|
-|prefecture_id(acitve_hash)|integer|null: false|
-|size|references|null: false, foreign_key: true|
-|shipping_day|references|null: false, foreign_key: true|
-|delivery_type|references|null: false, foreign_key: true|
+|prefecture_id|integer|null: false|
+|size|integer|
+|shipping_day|integer|null: false|
+|delivery_type|integer|null: false|
+|delivery_fee|integer|null: false|
 |category|references|null: false, foreign_key: true|
-|trading_status|enum|null: false|
-|seller|references|null: false, foreign_key: true|
-|buyer|references|foreign_key: true|
+|trading_status|integer|null: false|
+|seller|references|null: false, foreign_key: { to_table: :users }|
+|buyer|references|foreign_key: { to_table: :users }|
 |deal_closed_date|timestamp|
 
 ### Association
-- has_one :user_evaluation
-- has_many :comments, dependent: :destroy
-- has_many :likes
-- has_many :product_images, dependent: :destroy
+- has_many :product_images
 - belongs_to :category
 - belongs_to :brand
 - belongs_to :seller
 - belongs_to :buyer
+- belongs_to_active_hash :prefecture
 
 --------------------------------------------------------------
 
@@ -110,14 +97,14 @@
 |name|string|
 
 ### Association
-- has_many :products
+- has_one:product
 
 --------------------------------------------------------------
 
 ## product_imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|url|string|null:false|
+|image|string|null:false|
 |product|references|null:false, foreign_key:true|
 
 ### Association
@@ -125,26 +112,12 @@
 
 --------------------------------------------------------------
 
-## likesテーブル
+## categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user|references|null:false, foreign_key:true|
-|product|references|null:false, foreign_key:true|
+|name|string|null:false|
+|ancestry|string|
 
 ### Association
-- belongs_to :user
-- belongs_to :product
-
---------------------------------------------------------------
-
-## commentsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|comment|text|null:false|
-|user|references|null:false, foreign_key:true|
-|product|references|null:false, foreign_key:true|
-|created_at|timestamp|null:false|
-
-### Association
-- belongs_to :user
-- belongs_to :product
+- has_ancestry
+- has_many :products

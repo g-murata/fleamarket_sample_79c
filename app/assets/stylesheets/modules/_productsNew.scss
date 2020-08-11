@@ -105,7 +105,7 @@
 
 @mixin RightThird {
   padding-right: 10px;
-  text-align: center;
+  width: 190px;
 }
 
 @mixin RightBorder {
@@ -130,6 +130,21 @@
   background: linear-gradient(to bottom, #ffffff 0%, #ececec 100%);
   border:none;
   color: #646166;
+  width: 178px;
+}
+
+//削除ボタン（第1引数：高さ 第2引数：位置 第3引数：padding縦 第4引数：padding横  第5引数：文字の大きさ ）
+@mixin DeleteBtn($top,$left,$height,$width,$font-size){
+  position: absolute;
+  z-index: 10;
+  top:$top;
+  left: $left;
+  border: 1px solid white;
+  padding: $height $width;
+  font-size: $font-size;
+  color: white;
+  background: #3CCACE;
+  Cursor:pointer;
 }
 
 // ここからページコンテンツ
@@ -191,7 +206,18 @@
         display:none;
       }
 
+
     }
+      //新規画像登録時のバツアイコン（1枚目）
+      #Delete_btn0{
+        @include DeleteBtn(225px,553px,10px,30px,34px);  
+      }
+
+      //既存画像差し替え時のバツアイコン（1枚目）
+      #Delete_btn_replacement_nil0{
+        @include DeleteBtn(225px,553px,10px,30px,34px);  
+      }    
+
     &__SecondContent {
       display: flex;
       width: 370px;
@@ -199,7 +225,32 @@
       input{
         display:none;
       }
-      
+
+      //新規画像登録時のバツアイコン（2枚目〜4枚目）
+      #Delete_btn_replacement_nil1{
+        @include DeleteBtn(auto,325px,0px,15px,24px);
+      }
+      #Delete_btn_replacement_nil2{
+        @include DeleteBtn(auto,450px,0px,15px,24px);
+      }
+      #Delete_btn_replacement_nil3{
+        @include DeleteBtn(auto,570px,0px,15px,24px);
+      }
+
+      //既存画像差し替え時のバツアイコン（2枚目〜4枚目）
+      #Delete_btn1{
+        @include DeleteBtn(auto,325px,0px,15px,24px);
+      }
+      #Delete_btn2{
+        @include DeleteBtn(auto,450px,0px,15px,24px);
+      }
+      #Delete_btn3{
+        @include DeleteBtn(auto,570px,0px,15px,24px);
+      }
+
+
+
+
       &__Left {
         @include LeftSecondContents;
         margin-right: 15px;
@@ -211,7 +262,6 @@
               @include FixImage
               }
         }
-
         
       }
       &__Center {
@@ -398,12 +448,17 @@
         padding-top: 15px;
         padding-bottom: 15px;
         &__Left {
+          float: left;
           margin-top: 5px;
           width: 110px;
           font-size: 10px;
           font-weight: bold;
           color: #b5b5b5;
           float: left;
+        }
+        .append__category {
+          float:left;
+          margin-left: -110px;
         }
         select {
           @include RightThird ;
@@ -443,6 +498,7 @@
           @include SubmitBox;
           .select_line {
             @include SelectBox;
+            width: 178px;
           }
         }
       }
@@ -527,6 +583,25 @@
     }
   }
 }
+
+//Inputボックスの非表示
+.js-file_group{
+  display:none;
+}
+
+//チェックボックスの非表示
+.hidden-destroy{
+    display:none;
+}
+
+//Inputボックスの非表示（新規追加→削除時）
+#image-box{
+  input{
+  display:none;  
+}
+}
+
+
 
 .Bottom {
   margin-top: 20px;

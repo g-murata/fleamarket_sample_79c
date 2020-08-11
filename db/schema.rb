@@ -10,9 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2020_08_06_095351) do
 
 # ActiveRecord::Schema.define(version: 2020_08_04_152723) do
+
+
+# ActiveRecord::Schema.define(version: 2020_08_05_093222) do
 
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -37,11 +41,6 @@ ActiveRecord::Schema.define(version: 2020_08_06_095351) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "product_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image", null: false
     t.bigint "product_id", null: false
@@ -56,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_095351) do
     t.integer "price", null: false
     t.bigint "brand_id"
     t.integer "product_status", null: false
-    t.integer "prefecture", null: false
+    t.integer "prefecture_id", null: false
     t.integer "size"
     t.integer "shipping_day", null: false
     t.integer "shipping_type", null: false

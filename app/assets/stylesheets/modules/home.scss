@@ -34,6 +34,15 @@
         &__btn__s{
           background-color: #33ccee;
         }
+        button.btn-info{
+          background-color: #33ccee;
+          border: none;
+          height: 40px;
+          width: 50px;
+          border-radius: 4px;
+          padding-top: 2px;
+          margin-left: 5px;
+        }
       }
     }
   }
@@ -351,6 +360,9 @@
         font-size: 24px;
         text-decoration: none;
         color: #33ccee;
+        a{
+          color: #3CCACE;
+        }
       }
       &__box{
         width: 780px;
@@ -368,6 +380,9 @@
             font-size: 16px;
             line-height: 1.5;
             padding: 16px;
+          }
+          a{
+            color: black;
           }
       }
     }
