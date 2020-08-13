@@ -77,4 +77,17 @@ end
 gem 'payjp'
 gem 'carrierwave'
 gem 'mini_magick'
+
+
+
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+
+gem 'omniauth'
+gem 'dotenv-rails'
+
+gem 'fog-aws'
+
+
 gem 'ancestry'
+
