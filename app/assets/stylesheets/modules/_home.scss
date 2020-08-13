@@ -9,14 +9,13 @@
   height: 100vh;
 }
 
-
 .upper-field{
   padding: 0 60px;
   &__in{
-    max-width: 1040px;
+    max-width: 1140px;
     width: 100%;
     min-height: 82px;
-    margin: 0 auto;
+    margin: 0 0 0 100px;
     padding: 15px 0 0;
     &__main{
       height: 50.55px;
@@ -31,8 +30,21 @@
       }
       &__search-box{
         display: flex;
+        &__btn{
+          width: 900px;
+          height: 40px;
+        }
         &__btn__s{
-          background-color: #33ccee;
+          width: 36px;
+          height: 40px;
+          background-color: #3ccace;
+        }
+        button.btn-info{
+          border: none;
+          height: 40px;
+          width: 50px;
+          border-radius: 4px;
+          padding-top: 2px;
         }
         button.btn-info{
           background-color: #33ccee;
@@ -54,6 +66,7 @@
     margin: 0 100px 10px 100px;
     &__left-side{
       display: flex;
+      text-align: left;
       &__item{
         margin: 0;
         padding: 0 0 0 15px;

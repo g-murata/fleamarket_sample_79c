@@ -79,6 +79,10 @@ class ProductsController < ApplicationController
     @product_update = Product.order("updated_at DESC").first
   end
 
+  def search
+      @products = Product.where('product_name LIKE(?)', "%#{params[:products_name]}%")#.limit(20)
+  end
+
   private
   def product_params
     params.require(:product).permit(

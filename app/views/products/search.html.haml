@@ -1,0 +1,16 @@
+= render 'home/upper_filed'
+.product-search-wrapper
+  .Product-search
+    %h2.Product-search__title
+      検索結果一覧
+    .product-wrapper
+      - @products.each do |product|
+        .Product-seach-one
+          = link_to product_path(product), class: "Product-search-one__link" do
+            .Product-search-one__items
+              = image_tag product.product_images[0].image.url, size: "220x220", class: "Product-search-one__img"
+              .Product-search-one__info
+                %h3
+                  = product.product_name
+                %p
+                  = "#{product.price}円（税込）"
