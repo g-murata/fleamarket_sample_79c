@@ -79,7 +79,7 @@ class ProductsController < ApplicationController
   end
 
   def search
-      @products = Product.where('product_name LIKE(?)', "%#{params[:search]}%").limit(20)
+      @products = Product.where('product_name LIKE(?)', "%#{params[:products_name]}%")#.limit(20)
   end
 
   private
